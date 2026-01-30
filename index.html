@@ -1,12 +1,27 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>❤️Isabella❤️</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Valentine? 💘</title>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <h1>🚀 spiderCSman.github.io is live</h1>
-    <p>If you see this, GitHub Pages is working.</p>
-    <script src="app.js"></script>
+    <canvas id="confetti"></canvas>
+
+    <main class="card" id="card">
+      <div class="badge">💘</div>
+      <h1>Will you be my Valentine?</h1>
+      <p class="sub">I promise snacks, cuddles, and zero bugs (…mostly).</p>
+
+      <div class="buttons">
+        <button id="yes" class="btn yes">Yes 😍</button>
+        <button id="no" class="btn no">No 🙃</button>
+      </div>
+
+      <p class="hint" id="hint">Try to click “No” if you can 😏</p>
+    </main>
+
+    <script src="./app.js"></script>
   </body>
 </html>
