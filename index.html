@@ -137,7 +137,7 @@
               </p>
               <div class="project-links">
                 <a class="project-link" href="#">Live Site</a>
-                <a class="project-link" href="#">GitHub</a>
+                <a class="project-link" href="https://github.com/spiderCSman" target="_blank" rel="noreferrer">GitHub</a>
               </div>
             </article>
 
@@ -157,7 +157,7 @@
                 reducing friction behind the scenes so the public-facing experience stayed clean.
               </p>
               <div class="project-links">
-                <a class="project-link" href="#">GitHub</a>
+                <a class="project-link" href="https://github.com/spiderCSman" target="_blank" rel="noreferrer">GitHub</a>
               </div>
             </article>
 
@@ -257,7 +257,6 @@
           <div class="section-header reveal">
             <h2 class="section-title">Let’s make it easy for recruiters.</h2>
             <p class="section-copy">
-              Replace the placeholder links below with your real GitHub, LinkedIn, email, and resume.
               This section should be dead simple to scan.
             </p>
           </div>
@@ -287,50 +286,6 @@
     </footer>
   </div>
 
-  <script>
-    const revealItems = document.querySelectorAll('.reveal');
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: '0px 0px -6% 0px'
-      }
-    );
-
-    revealItems.forEach((item) => observer.observe(item));
-
-    const projectCards = document.querySelectorAll('.project-card');
-    const heroPanel = document.querySelector('.hero-panel');
-
-    function applyTilt(element, strength = 10) {
-      element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const rotateY = ((x / rect.width) - 0.5) * strength;
-        const rotateX = ((y / rect.height) - 0.5) * -strength;
-
-        element.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-      });
-
-      element.addEventListener('mouseleave', () => {
-        element.style.transform = '';
-      });
-    }
-
-    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-      projectCards.forEach((card) => applyTilt(card, 8));
-      if (heroPanel) applyTilt(heroPanel, 5);
-    }
-  </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
