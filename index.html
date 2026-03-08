@@ -1,29 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Be My Valentine?</title>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <canvas id="confetti"></canvas>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carter LaVigne | Software Engineer</title>
 
-    <main class=" card" id="card">
-      <div class="badge">
-        <img src="images/Isa.jpeg" alt="Heart badge" />
-      </div>
-      <h1>Will you be my Valentine?</h1>
-      <p class="sub">I promise snacks, cuddles, kisses, and zero bugs (…mostly).</p>
+<style>
 
-      <div class="buttons">
-        <button id="yes" class="btn yes">Yes 😍</button>
-        <button id="no" class="btn no">No 🙃</button>
-      </div>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:white;
+}
 
-      <p class="hint" id="hint">Try to click “No” if you can 😏</p>
-    </main>
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
 
-    <script src="./app.js"></script>
-  </body>
+header{
+    text-align:center;
+    padding:60px 20px;
+}
+
+header h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+header p{
+    font-size:18px;
+    color:#cbd5f5;
+}
+
+.buttons{
+    margin-top:25px;
+}
+
+.button{
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:6px;
+    margin:5px;
+    display:inline-block;
+}
+
+.primary{
+    background:white;
+    color:#0f172a;
+    font-weight:bold;
+}
+
+.secondary{
+    border:1px solid #94a3b8;
+    color:white;
+}
+
+section{
+    margin-top:60px;
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+.project{
+    background:#1e293b;
+    padding:20px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.skills span{
+    background:#1e293b;
+    padding:8px 14px;
+    border-radius:6px;
+    margin:5px;
+    display:inline-block;
+}
+
+footer{
+    text-align:center;
+    margin-top:80px;
+    color:#94a3b8;
+}
+
+a{
+    color:#60a5fa;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Carter LaVigne</h1>
+<p>Software Engineer | Frontend Developer | AI Builder</p>
+
+<div class="buttons">
+<a class="button primary" href="#projects">View Projects</a>
+<a class="button secondary" href="#contact">Contact</a>
+</div>
+</header>
+
+<div class="container">
+
+<section id="about">
+
+<h2>About Me</h2>
+
+<p>
+Computer Science graduate focused on software engineering, frontend development, and AI-assisted tools. 
+I enjoy building practical products that people actually use and improving systems through automation and clean user experiences.
+</p>
+
+</section>
+
+<section id="projects">
+
+<h2>Projects</h2>
+
+<div class="project">
+<h3>RowdyHacks Platform</h3>
+<p>
+Built and maintained hackathon infrastructure used by 1,000+ student developers. Focused on frontend experience and scalable event workflows.
+</p>
+</div>
+
+<div class="project">
+<h3>Hackathon Operations Tools</h3>
+<p>
+Developed internal tools that helped organizers manage participants, announcements, and event logistics more efficiently.
+</p>
+</div>
+
+<div class="project">
+<h3>AI Prototyping Projects</h3>
+<p>
+Built experimental AI tools and prototypes during hackathons to quickly turn ideas into working products.
+</p>
+</div>
+
+</section>
+
+<section id="skills">
+
+<h2>Skills</h2>
+
+<div class="skills">
+<span>JavaScript</span>
+<span>TypeScript</span>
+<span>React</span>
+<span>Next.js</span>
+<span>HTML</span>
+<span>CSS</span>
+<span>Node.js</span>
+<span>Git</span>
+<span>PostgreSQL</span>
+<span>AI APIs</span>
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<p>Email: your.email@example.com</p>
+<p>GitHub: <a href="#">github.com/spiderCSman</a></p>
+<p>LinkedIn: <a href="#">linkedin.com/in/yourname</a></p>
+
+</section>
+
+<footer>
+
+<p>© 2026 Carter LaVigne</p>
+
+</footer>
+
+</div>
+
+</body>
 </html>
