@@ -42,3 +42,9 @@ if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
   projectCards.forEach((card) => applyTilt(card, 8));
   if (heroPanel) applyTilt(heroPanel, 5);
 }
+
+const copyrightYear = document.getElementById("copyright-year");
+
+if (copyrightYear) {
+  copyrightYear.textContent = new Date().getFullYear();
+}
