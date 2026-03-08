@@ -161,7 +161,7 @@ export default function PortfolioWebsite() {
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
                 <p className="text-sm text-slate-400">Email</p>
-                <p className="mt-1 font-medium">carterlavigne.jobs@gmail.com</p>
+                <p className="mt-1 font-medium">carterlavigne3@gmail.com</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
                 <p className="text-sm text-slate-400">LinkedIn</p>
