@@ -1,190 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carter LaVigne | Software Engineer</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carter LaVigne | Portfolio</title>
+  <meta
+    name="description"
+    content="Portfolio of Carter LaVigne, a software engineer focused on frontend, full-stack, and AI-assisted product development."
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="background-overlay"></div>
-<style>
+  <div class="noise"></div>
+  <div class="orb"></div>
+  <div class="orb-2"></div>
 
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#0f172a;
-    color:white;
-}
+  <div class="page">
+    <div class="nav-wrap">
+      <nav class="nav">
+        <a class="brand" href="#top">Carter LaVigne</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:40px 20px;
-}
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy reveal">
+              <span class="eyebrow">Software Engineer • Frontend • Full-Stack • AI-Assisted Products</span>
+              <h1>Building polished web experiences that feel fast, intentional, and memorable.</h1>
+              <p>
+                I’m Carter LaVigne, a software engineer focused on frontend development, full-stack product work, and practical AI-powered tools.
+                I like turning real problems into clean interfaces, smooth flows, and software people actually want to use.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#work">View Projects</a>
+                <a class="btn btn-secondary" href="#contact">Get in Touch</a>
+              </div>
+            </div>
 
-header{
-    text-align:center;
-    padding:60px 20px;
-}
+            <aside class="hero-panel reveal">
+              <div class="panel-label">What I focus on</div>
+              <div class="panel-stack">
+                <div class="stack-card">
+                  <small>Frontend Systems</small>
+                  <strong>Modern interfaces with strong visual polish, responsiveness, and clean UX.</strong>
+                </div>
+                <div class="stack-card">
+                  <small>Full-Stack Product Work</small>
+                  <strong>From databases and auth to APIs and deployment, I like shipping complete experiences.</strong>
+                </div>
+                <div class="stack-card">
+                  <small>AI-Enabled Features</small>
+                  <strong>Using AI where it actually improves the workflow, not just because it sounds impressive.</strong>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
 
-header h1{
-    font-size:42px;
-    margin-bottom:10px;
-}
+      <section id="about" class="section">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2 class="section-title">A portfolio that feels sleek, but still says something real.</h2>
+            <p class="section-copy">
+              I’ve worked on hackathon platforms, organizer tools, and AI-assisted builds. I care about strong fundamentals,
+              clear communication, and making technical work feel smooth on the surface.
+            </p>
+          </div>
 
-header p{
-    font-size:18px;
-    color:#cbd5f5;
-}
+          <div class="about-grid">
+            <div class="glass about-card reveal">
+              <p>
+                My work sits at the intersection of design-minded frontend engineering and practical product building.
+                I enjoy taking an idea from messy early concept to something structured, polished, and usable.
+                Whether that means improving a landing page, building a feature end-to-end, or designing flows that help people
+                move through a product without friction, that’s the kind of work I like doing most.
+              </p>
+            </div>
 
-.buttons{
-    margin-top:25px;
-}
+            <div class="stats reveal">
+              <div class="stat">
+                <div class="stat-number">1k+</div>
+                <div class="stat-label">Users supported through student event and hackathon web experiences.</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Core focus areas: frontend, full-stack systems, and AI-assisted workflows.</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">Fast</div>
+                <div class="stat-label">I like building quickly, then refining details until the product feels right.</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">Clean</div>
+                <div class="stat-label">Readable UI, intuitive structure, and thoughtful motion are a big part of my style.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-.button{
-    text-decoration:none;
-    padding:12px 20px;
-    border-radius:6px;
-    margin:5px;
-    display:inline-block;
-}
+      <section id="work" class="section">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2 class="section-title">Selected work</h2>
+            <p class="section-copy">
+              These are written to feel more like polished case-study cards than plain resume bullets.
+              Swap in your real GitHub links, live demos, and stronger quantified results where you have them.
+            </p>
+          </div>
 
-.primary{
-    background:white;
-    color:#0f172a;
-    font-weight:bold;
-}
+          <div class="projects">
+            <article class="project-card large reveal">
+              <div class="project-top">
+                <span class="panel-label">Featured Project</span>
+              </div>
+              <div class="tag-list">
+                <span class="tag">React</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Tailwind</span>
+              </div>
+              <h3 class="project-title">RowdyHacks Platform</h3>
+              <p class="project-subtitle">A polished event experience for student hackers and organizers.</p>
+              <p class="project-copy">
+                Built and improved hackathon-facing web experiences with an emphasis on performance, clarity, and a more modern visual presentation.
+                Focused on making information easier to navigate and the overall event flow feel more intentional.
+              </p>
+              <div class="project-links">
+                <a class="project-link" href="#">Live Site</a>
+                <a class="project-link" href="#">GitHub</a>
+              </div>
+            </article>
 
-.secondary{
-    border:1px solid #94a3b8;
-    color:white;
-}
+            <article class="project-card tall reveal">
+              <div class="project-top">
+                <span class="panel-label">Operations</span>
+              </div>
+              <div class="tag-list">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Auth</span>
+                <span class="tag">Databases</span>
+              </div>
+              <h3 class="project-title">Hackathon Operations Tools</h3>
+              <p class="project-subtitle">Internal tooling for smoother logistics.</p>
+              <p class="project-copy">
+                Built tools that helped organizers manage workflows, information, and event operations more efficiently,
+                reducing friction behind the scenes so the public-facing experience stayed clean.
+              </p>
+              <div class="project-links">
+                <a class="project-link" href="#">GitHub</a>
+              </div>
+            </article>
 
-section{
-    margin-top:60px;
-}
+            <article class="project-card reveal">
+              <div class="project-top">
+                <span class="panel-label">AI Build</span>
+              </div>
+              <div class="tag-list">
+                <span class="tag">LLMs</span>
+                <span class="tag">APIs</span>
+                <span class="tag">Product UX</span>
+              </div>
+              <h3 class="project-title">AI-Assisted Prototypes</h3>
+              <p class="project-copy">
+                Rapid prototype work focused on turning rough concepts into usable interfaces with real workflows and clearer interaction design.
+              </p>
+            </article>
 
-h2{
-    margin-bottom:20px;
-}
+            <article class="project-card reveal">
+              <div class="project-top">
+                <span class="panel-label">Frontend</span>
+              </div>
+              <div class="tag-list">
+                <span class="tag">Responsive UI</span>
+                <span class="tag">Motion</span>
+                <span class="tag">Accessibility</span>
+              </div>
+              <h3 class="project-title">Landing Pages & Experience Design</h3>
+              <p class="project-copy">
+                A focus on premium-feeling layouts, readable hierarchy, and subtle motion that makes a site feel more finished.
+              </p>
+            </article>
 
-.project{
-    background:#1e293b;
-    padding:20px;
-    border-radius:8px;
-    margin-bottom:15px;
-}
+            <article class="project-card reveal">
+              <div class="project-top">
+                <span class="panel-label">Full Stack</span>
+              </div>
+              <div class="tag-list">
+                <span class="tag">Node.js</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Deployments</span>
+              </div>
+              <h3 class="project-title">Product Engineering</h3>
+              <p class="project-copy">
+                End-to-end builds with user-facing interfaces, backend logic, storage, and deployment work tied together cleanly.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-.skills span{
-    background:#1e293b;
-    padding:8px 14px;
-    border-radius:6px;
-    margin:5px;
-    display:inline-block;
-}
+      <section id="skills" class="section">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2 class="section-title">Tools and strengths</h2>
+            <p class="section-copy">
+              Keep this honest. Put in the tools you can confidently discuss with a recruiter or in an interview.
+            </p>
+          </div>
 
-footer{
-    text-align:center;
-    margin-top:80px;
-    color:#94a3b8;
-}
+          <div class="skills-wrap">
+            <div class="glass skills-card reveal">
+              <h3>Core stack</h3>
+              <div class="skills-list">
+                <span class="skill-pill">JavaScript</span>
+                <span class="skill-pill">TypeScript</span>
+                <span class="skill-pill">React</span>
+                <span class="skill-pill">Next.js</span>
+                <span class="skill-pill">HTML</span>
+                <span class="skill-pill">CSS</span>
+                <span class="skill-pill">Tailwind CSS</span>
+                <span class="skill-pill">Node.js</span>
+                <span class="skill-pill">Git</span>
+                <span class="skill-pill">PostgreSQL</span>
+              </div>
+            </div>
 
-a{
-    color:#60a5fa;
-}
+            <div class="glass skills-card reveal">
+              <h3>What I bring</h3>
+              <div class="skills-list">
+                <span class="skill-pill">Frontend polish</span>
+                <span class="skill-pill">Product thinking</span>
+                <span class="skill-pill">Fast iteration</span>
+                <span class="skill-pill">Team collaboration</span>
+                <span class="skill-pill">UI structure</span>
+                <span class="skill-pill">AI-assisted workflows</span>
+                <span class="skill-pill">Hackathon leadership</span>
+                <span class="skill-pill">User-focused builds</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-</style>
-</head>
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="section-header reveal">
+            <h2 class="section-title">Let’s make it easy for recruiters.</h2>
+            <p class="section-copy">
+              Replace the placeholder links below with your real GitHub, LinkedIn, email, and resume.
+              This section should be dead simple to scan.
+            </p>
+          </div>
 
-<body>
+          <div class="glass contact-card reveal">
+            <div>
+              <p>
+                Interested in frontend engineering, full-stack product roles, and opportunities where strong UI,
+                product sense, and technical execution all matter.
+              </p>
+            </div>
+            <div class="contact-links">
+              <a class="btn btn-secondary" href="mailto:your.email@example.com">Email</a>
+              <a class="btn btn-secondary" href="https://github.com/spiderCSman" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="btn btn-secondary" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="btn btn-primary" href="#" target="_blank" rel="noreferrer">Resume</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-<header>
-<h1>Carter LaVigne</h1>
-<p>Software Engineer | Frontend Developer | AI Builder</p>
+    <footer class="footer">
+      <div class="container">
+        © 2026 Carter LaVigne
+      </div>
+    </footer>
+  </div>
 
-<div class="buttons">
-<a class="button primary" href="#projects">View Projects</a>
-<a class="button secondary" href="#contact">Contact</a>
-</div>
-</header>
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
 
-<div class="container">
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -6% 0px'
+      }
+    );
 
-<section id="about">
+    revealItems.forEach((item) => observer.observe(item));
 
-<h2>About Me</h2>
+    const projectCards = document.querySelectorAll('.project-card');
+    const heroPanel = document.querySelector('.hero-panel');
 
-<p>
-Computer Science graduate focused on software engineering, frontend development, and AI-assisted tools. 
-I enjoy building practical products that people actually use and improving systems through automation and clean user experiences.
-</p>
+    function applyTilt(element, strength = 10) {
+      element.addEventListener('mousemove', (e) => {
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-</section>
+        const rotateY = ((x / rect.width) - 0.5) * strength;
+        const rotateX = ((y / rect.height) - 0.5) * -strength;
 
-<section id="projects">
+        element.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      });
 
-<h2>Projects</h2>
+      element.addEventListener('mouseleave', () => {
+        element.style.transform = '';
+      });
+    }
 
-<div class="project">
-<h3>RowdyHacks Platform</h3>
-<p>
-Built and maintained hackathon infrastructure used by 1,000+ student developers. Focused on frontend experience and scalable event workflows.
-</p>
-</div>
-
-<div class="project">
-<h3>Hackathon Operations Tools</h3>
-<p>
-Developed internal tools that helped organizers manage participants, announcements, and event logistics more efficiently.
-</p>
-</div>
-
-<div class="project">
-<h3>AI Prototyping Projects</h3>
-<p>
-Built experimental AI tools and prototypes during hackathons to quickly turn ideas into working products.
-</p>
-</div>
-
-</section>
-
-<section id="skills">
-
-<h2>Skills</h2>
-
-<div class="skills">
-<span>JavaScript</span>
-<span>TypeScript</span>
-<span>React</span>
-<span>Next.js</span>
-<span>HTML</span>
-<span>CSS</span>
-<span>Node.js</span>
-<span>Git</span>
-<span>PostgreSQL</span>
-<span>AI APIs</span>
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2>Contact</h2>
-
-<p>Email: your.email@example.com</p>
-<p>GitHub: <a href="#">github.com/spiderCSman</a></p>
-<p>LinkedIn: <a href="#">linkedin.com/in/yourname</a></p>
-
-</section>
-
-<footer>
-
-<p>© 2026 Carter LaVigne</p>
-
-</footer>
-
-</div>
-
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      projectCards.forEach((card) => applyTilt(card, 8));
+      if (heroPanel) applyTilt(heroPanel, 5);
+    }
+  </script>
 </body>
 </html>
