@@ -6,10 +6,10 @@
   --text: #f8fafc;
   --muted: #b8c2d6;
   --muted-2: #8ea0bf;
-  --accent: #9cc7ff;
-  --accent-2: #d7b8ff;
-  --glow-1: rgba(98, 167, 255, 0.18);
-  --glow-2: rgba(176, 107, 255, 0.14);
+  --accent: #b48cff;
+  --accent-2: #e2b9ff;
+  --glow-1: rgba(166, 118, 255, 0.22);
+  --glow-2: rgba(206, 139, 255, 0.18);
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
   --radius-xl: 32px;
   --radius-lg: 24px;
@@ -33,7 +33,7 @@ body {
   background:
     radial-gradient(circle at 10% 15%, var(--glow-1), transparent 28%),
     radial-gradient(circle at 90% 20%, var(--glow-2), transparent 30%),
-    radial-gradient(circle at 50% 80%, rgba(80, 125, 255, 0.10), transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(168, 110, 255, 0.14), transparent 35%),
     linear-gradient(180deg, #040612 0%, #070b19 38%, #060914 100%);
   color: var(--text);
   overflow-x: hidden;
@@ -79,7 +79,7 @@ img {
   height: 380px;
   top: 8%;
   left: -80px;
-  background: rgba(68, 146, 255, 0.18);
+  background: rgba(146, 92, 255, 0.12);
 }
 
 .orb-2 {
@@ -87,7 +87,7 @@ img {
   height: 420px;
   right: -90px;
   top: 32%;
-  background: rgba(177, 103, 255, 0.14);
+  background: rgba(190, 120, 255, 0.10);
   animation-delay: 3s;
 }
 
@@ -197,7 +197,7 @@ img {
   font-weight: 800;
   max-width: 880px;
   text-wrap: balance;
-  background: linear-gradient(135deg, #ffffff 0%, #d9e8ff 40%, #cbbcff 85%);
+  background: linear-gradient(135deg, #ffffff 0%, #e8dbff 50%, #caa4ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
