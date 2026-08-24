@@ -1,4 +1,7 @@
 node_modules/
 .env
-image/
+.DS_Store
 
+# Root-level scratch images only — do NOT ignore docs/image/ (site assets are tracked)
+/image/
+_to_delete/

@@ -48,3 +48,31 @@ const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) {
   copyrightYear.textContent = new Date().getFullYear();
 }
+
+/* Mobile navigation */
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.getElementById("nav-links");
+
+if (navToggle && navLinks) {
+  const setNav = (open) => {
+    navToggle.setAttribute("aria-expanded", String(open));
+    navLinks.classList.toggle("is-open", open);
+  };
+
+  navToggle.addEventListener("click", () => {
+    setNav(navToggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  navLinks.addEventListener("click", (e) => {
+    if (e.target.closest("a")) setNav(false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setNav(false);
+  });
+
+  // Reset state when resizing back up to the desktop layout.
+  window.matchMedia("(min-width: 761px)").addEventListener("change", (e) => {
+    if (e.matches) setNav(false);
+  });
+}
