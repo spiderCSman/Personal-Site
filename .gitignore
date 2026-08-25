@@ -5,3 +5,4 @@ node_modules/
 # Root-level scratch images only — do NOT ignore docs/image/ (site assets are tracked)
 /image/
 _to_delete/
+CLAUDE.md
