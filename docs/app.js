@@ -1,69 +1,47 @@
-const revealItems = document.querySelectorAll(".reveal");
+/* carterlavigne.dev — no dependencies. */
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.12,
-    rootMargin: "0px 0px -6% 0px",
-  }
-);
+/* --- Theme -----------------------------------------------------------------
+   The inline script in <head> has already applied any stored preference.
+   Here we only handle toggling and persisting it.                          */
 
-revealItems.forEach((item) => observer.observe(item));
+const THEME_KEY = "clv.theme";
+const root = document.documentElement;
+const themeToggle = document.getElementById("theme-toggle");
 
-const projectCards = document.querySelectorAll(".project-card");
-const heroPanel = document.querySelector(".hero-panel");
+function currentTheme() {
+  const set = root.getAttribute("data-theme");
+  if (set === "light" || set === "dark") return set;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
 
-function applyTilt(element, strength = 10) {
-  element.addEventListener("mousemove", (e) => {
-    const rect = element.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const rotateY = ((x / rect.width) - 0.5) * strength;
-    const rotateX = ((y / rect.height) - 0.5) * -strength;
-
-    element.style.transform =
-      `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-  });
-
-  element.addEventListener("mouseleave", () => {
-    element.style.transform = "";
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const next = currentTheme() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {
+      // Storage blocked — the choice still applies for this page view.
+    }
   });
 }
 
-if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
-  projectCards.forEach((card) => applyTilt(card, 8));
-  if (heroPanel) applyTilt(heroPanel, 5);
-}
+/* --- Mobile navigation ---------------------------------------------------- */
 
-const copyrightYear = document.getElementById("copyright-year");
+const navToggle = document.getElementById("nav-toggle");
+const nav = document.getElementById("nav");
 
-if (copyrightYear) {
-  copyrightYear.textContent = new Date().getFullYear();
-}
-
-/* Mobile navigation */
-const navToggle = document.querySelector(".nav-toggle");
-const navLinks = document.getElementById("nav-links");
-
-if (navToggle && navLinks) {
+if (navToggle && nav) {
   const setNav = (open) => {
     navToggle.setAttribute("aria-expanded", String(open));
-    navLinks.classList.toggle("is-open", open);
+    nav.classList.toggle("is-open", open);
   };
 
   navToggle.addEventListener("click", () => {
     setNav(navToggle.getAttribute("aria-expanded") !== "true");
   });
 
-  navLinks.addEventListener("click", (e) => {
+  nav.addEventListener("click", (e) => {
     if (e.target.closest("a")) setNav(false);
   });
 
@@ -71,8 +49,37 @@ if (navToggle && navLinks) {
     if (e.key === "Escape") setNav(false);
   });
 
-  // Reset state when resizing back up to the desktop layout.
-  window.matchMedia("(min-width: 761px)").addEventListener("change", (e) => {
+  window.matchMedia("(min-width: 701px)").addEventListener("change", (e) => {
     if (e.matches) setNav(false);
   });
 }
+
+/* --- Scroll reveal --------------------------------------------------------
+   Staggered per group so rows cascade rather than all appearing at once.  */
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if (revealItems.length) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const siblings = Array.from(entry.target.parentElement.children).filter((n) =>
+          n.classList.contains("reveal")
+        );
+        const i = Math.max(0, siblings.indexOf(entry.target));
+        entry.target.style.transitionDelay = Math.min(i, 5) * 70 + "ms";
+        entry.target.classList.add("in-view");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -5% 0px" }
+  );
+
+  revealItems.forEach((item) => observer.observe(item));
+}
+
+/* --- Footer year ----------------------------------------------------------- */
+
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();

@@ -13,11 +13,21 @@ Personal portfolio site for Carter LaVigne. Read this before making changes.
 ## Conventions
 
 - Content lives directly in `docs/index.html`. There is no CMS or data file — static HTML is deliberate here, since it keeps the page crawlable and avoids a loading flash on a site whose whole job is to be read by recruiters.
-- `docs/styles.css` is one stylesheet, organized top-down in visual order (tokens → base → nav → hero → sections → responsive). Design tokens are CSS custom properties on `:root`. Add new tokens there, don't hardcode colors.
-- `docs/app.js` is vanilla, no dependencies. It handles scroll-reveal (`IntersectionObserver` on `.reveal`), card tilt, the copyright year, and the mobile nav.
+
+### Design system (rebuilt Aug 2026)
+
+The site is an **editorial/Swiss layout**, not the old dark-glassmorphism template. Hold the line on this:
+
+- **Type is the design.** `Instrument Serif` for display and headings, `Inter` for text, `JetBrains Mono` for metadata, labels, and nav. Loaded from Google Fonts with real fallback stacks. Never introduce a fourth family.
+- **Structure is hairline rules and a strict grid**, not cards and shadows. Sections carry numbers (`01`–`05`) in mono. Rows are `6rem` index column + content + aside. Radii are 2–3px; there are no pills, no glass, no glow, no tilt.
+- **Warm neutrals, never pure black or white.** Paper `#fbfaf7` / ink `#14130f` in light; `#0e0d0c` / `#f6f3ed` in dark. One accent: violet (`#5b34e8` light, `#b39bff` dark).
+- **Dark mode is a full peer, not an inversion.** Every colour is defined on bare `:root`; the `@media (prefers-color-scheme: dark)` block (guarded `:root:not([data-theme="light"])`) and the `:root[data-theme="dark"]` block only *redefine* those same names. Add new colours as tokens in all three places or dark mode silently breaks.
+- **Theme toggle**: an inline script in `<head>` applies the stored preference before first paint (prevents flash); `app.js` handles toggling and persists to `localStorage` under `clv.theme`. Every read/write is in try/catch.
+- `docs/app.js` is vanilla, no dependencies: theme toggle, mobile nav, staggered scroll-reveal (`IntersectionObserver` on `.reveal`), footer year.
 - **`app.js` must be loaded exactly once**, at the end of `<body>`. It was previously double-loaded, which double-bound every listener.
 - Motion is gated on `prefers-reduced-motion`. Preserve that when adding animation.
-- Breakpoints: 980px (grids collapse to one column) and 760px (mobile nav appears, type scales down).
+- Breakpoints: **900px** (grids collapse to one column) and **700px** (mobile nav appears).
+- The todo demo at `docs/projects/todo/` inherits the root stylesheet and its tokens, then layers `projects/todo/styles.css`. **If you change the design system, that page changes too — always re-check it.**
 
 ## Gotchas
 
@@ -41,19 +51,23 @@ Source of truth is his master resume. Facts below are already reflected on the s
 
 | Project | What | Links |
 |---|---|---|
-| **AIAIO** | LLM prototyping platform, converts mockups + prompts into working React. **Best Overall, HackTX 2024**, $4,000 grand prize, 150+ teams. 4-person team, 24 hours. Next.js, TypeScript, React Flow, TLDRAW, Sandpack, Clerk, Vercel. | [Devpost](https://devpost.com/software/aiaio) · [GitHub](https://github.com/lryanle/AIAIO) |
+| **AIAIO** | LLM prototyping platform, converts mockups + prompts into working React. **Best Overall, HackTX 2024**, $4,000 grand prize, 150+ teams. 4-person team, 24 hours. **Carter was one of four and has said he did not contribute much — it was his first hackathon.** Write it as team credit ("part of the four-person team behind…"), never as though he built the LLM pipelines himself. Next.js, TypeScript, React Flow, TLDRAW, Sandpack, Clerk, Vercel. | [Devpost](https://devpost.com/software/aiaio) · [GitHub](https://github.com/lryanle/AIAIO) |
 | **HackKit** | Open-source hackathon platform, 1,200+ participants across 3 UTSA hackathons, ASU SunHacks, UTD WeHacks. Core contributor: auth, onboarding, event management. | [GitHub](https://github.com/acmutsa/HackKit) |
-| **RowdyHacks X & XI** | Event platform for 500+ hackers. Frontend work via PRs; live production fixes during events. | [XI](https://github.com/acmutsa/RowdyHacksXI) · [X](https://github.com/acmutsa/RowdyHacksX) |
+| **Astronomix** | HackTX 2025. Full-stack AI app: Gemini-generated tarot/astrology readings + a stock-portfolio tracker. Team project, **Carter was lead**. React 19/Vite/Router/Tailwind/Framer Motion/Recharts; Node + Express 5; Turso (libSQL/SQLite) with `users` and `user_stocks`; Google Gemini with structured JSON schema; Twelve Data API. 7 client routes, 6 REST endpoints, parameterized queries. **Did not place** — never imply it won. **Never call it secure:** passwords are compared in plaintext and the Gemini key is exposed client-side via `VITE_GEMINI_API_KEY`. | [GitHub](https://github.com/spiderCSman/HackTX2025) |
+| **RowdyHacks X & XI** | Event platform for 500+ hackers. Frontend work via PRs; live production fixes during events. | [xi.rowdyhacks.org](https://xi.rowdyhacks.org/) · [x.rowdyhacks.org](https://x.rowdyhacks.org/) · [code](https://github.com/acmutsa/RowdyHacksXI) |
 | **Recruiting automation** | 350+ job listings automated in Python + Power Automate, ~80% less manual posting time (Team Murph). | — |
 | **carterlavigne.dev** | This site. | — |
 
 ### Experience
 
-- **Web Developer (as needed)**, Alliance Builders — 08/2025–present. Building out the company website; ad-hoc technical support. **Nothing more than that.** Carter's master resume claims an "append-only access logging system," Zoho integrations, Python workflow automation, and internal tooling here — he has confirmed none of that is accurate. Do not reintroduce those claims from the resume.
+- **Web Developer**, Alliance Builders — 05/2026–present. Leading a ground-up WordPress rebuild of the company site as sole developer. **That is the whole role on the site — one bullet, by Carter's explicit instruction.** Do NOT add day-to-day technical support, software configuration, email setup, or Zoho, even though his resume lists them; he asked for all of it removed.
+- **Superintendent (part-time)**, Alliance Builders — 08/2025–present. Construction supervision, not software. Lives in the site's "Before software" card, not the main timeline. Carter's master resume claims an "append-only access logging system," Zoho integrations, Python workflow automation, and internal tooling here — he has confirmed none of that is accurate. Do not reintroduce those claims from the resume.
 - **Web & Automation Developer (freelance, as needed)**, Team Murph, San Antonio — 05/2023–present. Not a contract or retainer — they reach out when they want updates, and Carter does the work. Don't describe this as "contract."
 - **Projects Junior Officer**, ACM UTSA — 10/2024–12/2025. Coordinated 3+ production platforms, roadmaps across 10+ devs/designers, 1,000+ active users per semester.
 - **Technical Organizer**, RowdyHacks X & XI — 05/2024–12/2025. Took a lead role running RowdyHacks XI on the ground: judging setup, presentations, live technical ops.
-- **Superintendent**, Construction Management and Development Inc., Austin — 05/2021–08/2022. $1.3M athletic facility renovation, 15 subcontractors.
+- **Superintendent**, Construction Management and Development Inc., Austin — 05/2021–08/2022. $1.3M athletic facility renovation, 15 subcontractors. Also in the "Before software" card.
+
+**Non-technical roles rule:** the site is a software portfolio, so engineering work leads. The two construction superintendent roles are kept — compressed — in a `.prior-card` below the timeline, because a $1.3M project with 15 subcontractors at nineteen is a real differentiator. Topgolf and Domino's are on the resume but deliberately NOT on the site; they compete with AIAIO and HackKit for a recruiter's 30 seconds and lose. Don't add them back.
 
 ### Skills
 

@@ -3,32 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carter LaVigne | Portfolio</title>
+  <title>Carter LaVigne | Software Engineer</title>
   <meta
     name="description"
-    content="Portfolio of Carter LaVigne, a software engineer focused on frontend, full-stack, and product-minded web development."
+    content="Carter LaVigne — software engineer in Austin, TX. React, Next.js, and full-stack work, including an open-source platform serving 1,200+ users."
   />
   <link rel="canonical" href="https://carterlavigne.dev/" />
-  <meta name="theme-color" content="#050816" />
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e0d0c" media="(prefers-color-scheme: dark)" />
 
-  <!-- Social sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://carterlavigne.dev/" />
   <meta property="og:title" content="Carter LaVigne | Software Engineer" />
   <meta
     property="og:description"
-    content="Software engineer focused on frontend, full-stack, and product-minded web development."
+    content="Software engineer in Austin, TX. React, Next.js, and full-stack work, including an open-source platform serving 1,200+ users."
   />
   <meta property="og:image" content="https://carterlavigne.dev/image/personal_logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Carter LaVigne | Software Engineer" />
   <meta
     name="twitter:description"
-    content="Software engineer focused on frontend, full-stack, and product-minded web development."
+    content="Software engineer in Austin, TX. React, Next.js, and full-stack work, including an open-source platform serving 1,200+ users."
   />
   <meta name="twitter:image" content="https://carterlavigne.dev/image/personal_logo.png" />
 
+  <!-- Set the theme before first paint so there is no flash of the wrong one. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("clv.theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="styles.css" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32x32.png?v=6" />
   <link rel="icon" type="image/png" sizes="16x16" href="image/favicon-16x16.png?v=6" />
   <link rel="shortcut icon" href="image/favicon.ico?v=6" type="image/x-icon" />
@@ -36,433 +53,487 @@
   <link rel="manifest" href="image/site.webmanifest" />
 </head>
 <body>
-  <a class="skip-link" href="#top">Skip to content</a>
-  <div class="noise"></div>
-  <div class="orb"></div>
-  <div class="orb-2"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="page">
-    <div class="nav-wrap">
-      <nav class="nav" aria-label="Primary">
-        <a class="brand" href="#top">Carter LaVigne</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">Carter LaVigne<span>.</span></a>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#playground">Playground</a>
+        <a href="#experience">Experience</a>
+        <a href="#background">Background</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-tools">
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" />
+            <path d="M12 2.4v2.4M12 19.2v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.4 12h2.4M19.2 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z" />
+          </svg>
+        </button>
+
         <button
           class="nav-toggle"
           type="button"
+          id="nav-toggle"
           aria-label="Menu"
           aria-expanded="false"
-          aria-controls="nav-links"
+          aria-controls="nav"
         >
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bars"></span>
         </button>
-        <div class="nav-links" id="nav-links">
-          <a href="#about">About</a>
-          <a href="#work">Work</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+      </div>
     </div>
+  </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="container">
-          <div class="hero-grid">
-            <div class="hero-copy reveal">
-              <span class="eyebrow">Software Engineer • Austin, TX • CS Grad, Dec 2025</span>
-              <h1>Building polished web applications that feel fast, intuitive, and well crafted.</h1>
-              <p>
-                I'm Carter LaVigne, a software engineer who ships React and Next.js applications that hold up under real load —
-                platforms serving <strong>1,200+ users</strong> across five university hackathons, and an LLM-powered prototyping
-                tool that won <strong>Best Overall at HackTX 2024</strong> out of 150+ teams. I like turning complex ideas into
-                clean interfaces, then keeping them running while people are actually using them.
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="hero-meta mono">
+          <span><i class="dot pulse"></i> Open to software engineering roles</span>
+          <span>Austin, Texas</span>
+          <span>BS Computer Science, UTSA &mdash; Dec 2025</span>
+        </div>
+
+        <h1>Software that holds up when <em>people actually use it.</em></h1>
+
+        <div class="hero-lower">
+          <p class="hero-lede">
+            I'm Carter LaVigne. I build React and Next.js applications that ship to real users &mdash; including an
+            open-source platform serving <strong>1,200+ participants</strong> across five university hackathons, and
+            full-stack work spanning Express APIs, relational schemas, and LLM integration.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">See the work <span class="arrow">&rarr;</span></a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Highlights">
+      <div class="wrap figures">
+        <div class="figure reveal">
+          <div class="figure-n">1,200+</div>
+          <p class="figure-l">Participants served by HackKit across three UTSA hackathons, ASU SunHacks, and UTD WeHacks.</p>
+        </div>
+        <div class="figure reveal">
+          <div class="figure-n">$4,000</div>
+          <p class="figure-l">Grand Prize &mdash; Best Overall at HackTX 2024, out of 150+ competing teams.</p>
+        </div>
+        <div class="figure reveal">
+          <div class="figure-n">3.72</div>
+          <p class="figure-l">GPA at UTSA. Honors Graduate, Dean's List 8 of 9 semesters.</p>
+        </div>
+        <div class="figure reveal">
+          <div class="figure-n">~80%</div>
+          <p class="figure-l">Less manual posting time after automating 350+ job listings in Python and Power Automate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 — Work -->
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-num">01</div>
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-note">
+            Five projects, all shipped. Every one has a link &mdash; go look at the code.
+          </p>
+        </div>
+
+        <div class="entries">
+          <article class="entry reveal">
+            <div class="entry-index">001</div>
+            <div>
+              <h3 class="entry-title">AIAIO</h3>
+              <p class="entry-sub">Turns design mockups and written prompts into working React components.</p>
+              <p class="entry-body">
+                Part of the four-person team behind an AI-assisted prototyping system. Diagram-based editing runs on
+                React Flow and TLDRAW; Sandpack compiles the generated code so you see it running in the browser
+                immediately.
               </p>
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#work">View Projects</a>
-                <a class="btn btn-secondary" href="#contact">Get in Touch</a>
-              </div>
+              <p class="entry-body">
+                A working prototype in 24 hours &mdash; and Best Overall plus the $4,000 Grand Prize against 150+ teams.
+                My first hackathon.
+              </p>
             </div>
-
-            <aside class="hero-panel reveal">
-              <div class="panel-label">What I focus on</div>
-              <div class="panel-stack">
-                <div class="stack-card">
-                  <small>Frontend Engineering</small>
-                  <strong>Building responsive, modern interfaces with strong visual polish and clear user experience.</strong>
-                </div>
-                <div class="stack-card">
-                  <small>Full-Stack Product Work</small>
-                  <strong>Connecting frontend, backend, and data into complete experiences that feel thoughtful and reliable.</strong>
-                </div>
-                <div class="stack-card">
-                  <small>Practical AI Features</small>
-                  <strong>Using AI where it improves real workflows, not just as a gimmick.</strong>
-                </div>
+            <aside class="entry-aside">
+              <span class="award">Best Overall &middot; HackTX 2024</span>
+              <span class="year">Nov 2024</span>
+              <div class="stack">
+                <span class="chip">Next.js</span>
+                <span class="chip">TypeScript</span>
+                <span class="chip">React Flow</span>
+                <span class="chip">TLDRAW</span>
+                <span class="chip">Sandpack</span>
+                <span class="chip">LLM APIs</span>
+              </div>
+              <div class="links">
+                <a class="link" href="https://devpost.com/software/aiaio" target="_blank" rel="noreferrer">Devpost <span class="arrow">&#8599;</span></a>
+                <a class="link" href="https://github.com/lryanle/AIAIO" target="_blank" rel="noreferrer">GitHub <span class="arrow">&#8599;</span></a>
               </div>
             </aside>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <section id="about" class="section">
-        <div class="container">
-          <div class="section-header reveal">
-            <h2 class="section-title">About</h2>
-          </div>
-
-          <div class="about-grid">
-            <div class="glass about-card reveal">
-              <p>
-                My work sits at the intersection of frontend engineering, product thinking, and practical software development.
-                Most of what I've built has shipped to people who were using it that same day — hackathon platforms running
-                during live events, and automation that replaced work someone used to do by hand.
-              </p>
-              <p>
-                That's shaped how I build: I care about interfaces that are clean and fast, but I care just as much about what
-                happens when a thousand people hit them at once and something breaks at 2am.
-              </p>
-              <p>
-                I graduated from <strong>UTSA</strong> in December 2025 with a BS in Computer Science (Software Engineering),
-                and I'm based in Austin, TX.
-              </p>
-            </div>
-
-            <div class="stats reveal">
-              <div class="stat">
-                <div class="stat-number">1,200+</div>
-                <div class="stat-label">
-                  Participants served by HackKit across three UTSA hackathons, ASU SunHacks, and UTD WeHacks.
-                </div>
-              </div>
-
-              <div class="stat">
-                <div class="stat-number">$4,000</div>
-                <div class="stat-label">
-                  Grand Prize — Best Overall at HackTX 2024, out of 150+ competing teams.
-                </div>
-              </div>
-
-              <div class="stat">
-                <div class="stat-number">3.72</div>
-                <div class="stat-label">
-                  GPA at UTSA. Honors Graduate, Dean's List 8 of 9 semesters.
-                </div>
-              </div>
-
-              <div class="stat">
-                <div class="stat-number">~80%</div>
-                <div class="stat-label">
-                  Reduction in manual posting time after automating 350+ job listings in Python and Power Automate.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" class="section">
-        <div class="container">
-          <div class="section-header reveal">
-            <h2 class="section-title">Selected Work</h2>
-          </div>
-
-          <div class="projects">
-            <article class="project-card large reveal">
-              <div class="project-top">
-                <span class="panel-label">Featured Project</span>
-                <span class="award-badge">Best Overall &middot; HackTX 2024</span>
-              </div>
-              <div class="tag-list">
-                <span class="tag">Next.js</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">React Flow</span>
-                <span class="tag">TLDRAW</span>
-                <span class="tag">Sandpack</span>
-                <span class="tag">LLM APIs</span>
-              </div>
-              <h3 class="project-title">AIAIO &mdash; AI Prototyping Platform</h3>
-              <p class="project-subtitle">Turns design mockups and plain-English prompts into working React components.</p>
-              <p class="project-copy">
-                Built LLM image-comprehension and code-generation pipelines that read a UI mockup and produce real component
-                structure and layout logic. Diagram-based editing runs on React Flow and TLDRAW, and Sandpack compiles the
-                generated code so you can see it running in the browser immediately.
-              </p>
-              <p class="project-copy">
-                Designed, built, and deployed with a four-person team in 24 hours. Took Best Overall and the $4,000 Grand Prize
-                against 150+ teams.
-              </p>
-              <div class="project-links">
-                <a class="project-link" href="https://devpost.com/software/aiaio" target="_blank" rel="noreferrer">Devpost &rarr;</a>
-                <a class="project-link" href="https://github.com/lryanle/AIAIO" target="_blank" rel="noreferrer">GitHub &rarr;</a>
-              </div>
-            </article>
-
-            <article class="project-card tall reveal">
-              <div class="project-top">
-                <span class="panel-label">Open Source</span>
-                <span class="meta-badge">2024 &ndash; 2025</span>
-              </div>
-              <div class="tag-list">
-                <span class="tag">Next.js</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">Clerk</span>
-                <span class="tag">Tailwind</span>
-              </div>
-              <h3 class="project-title">HackKit &mdash; Hackathon Platform</h3>
-              <p class="project-subtitle">Open-source event software running five university hackathons.</p>
-              <p class="project-copy">
-                Core contributor to a platform serving 1,200+ participants across three UTSA hackathons, ASU SunHacks, and
-                UTD WeHacks. Built and maintained authentication, onboarding, and event management &mdash; the parts that absorb
-                thousands of logins in the first hour of an event.
-              </p>
-              <p class="project-copy">
-                Refactored frontend state management and REST integration to improve reliability, and built reusable React
-                components shared across every deployment. Collaborated with distributed contributors through pull requests
-                and code review.
-              </p>
-              <div class="project-links">
-                <a class="project-link" href="https://github.com/acmutsa/HackKit" target="_blank" rel="noreferrer">GitHub &rarr;</a>
-              </div>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-top">
-                <span class="panel-label">Live Events</span>
-              </div>
-              <div class="tag-list">
-                <span class="tag">TypeScript</span>
-                <span class="tag">Next.js</span>
-                <span class="tag">Tailwind</span>
-              </div>
-              <h3 class="project-title">RowdyHacks X &amp; XI</h3>
-              <p class="project-copy">
-                Deployed and customized the event platform used by 500+ hackers for registration, schedules, and live updates,
-                shipping frontend work through PRs into a shared codebase &mdash; including fixing production issues while the
-                event was running.
-              </p>
-              <div class="project-links">
-                <a class="project-link" href="https://github.com/acmutsa/RowdyHacksXI" target="_blank" rel="noreferrer">RowdyHacks XI &rarr;</a>
-                <a class="project-link" href="https://github.com/acmutsa/RowdyHacksX" target="_blank" rel="noreferrer">RowdyHacks X &rarr;</a>
-              </div>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-top">
-                <span class="panel-label">Automation</span>
-              </div>
-              <div class="tag-list">
-                <span class="tag">Python</span>
-                <span class="tag">Power Automate</span>
-                <span class="tag">WordPress</span>
-              </div>
-              <h3 class="project-title">Recruiting Pipeline Automation</h3>
-              <p class="project-copy">
-                Automated job-advertisement publishing across 350+ listings, cutting manual posting time by roughly 80%. Built
-                the recruiting landing page that centralized applicant intake, and still maintain the production site.
-              </p>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-top">
-                <span class="panel-label">This Site</span>
-              </div>
-              <div class="tag-list">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Cloudflare</span>
-              </div>
-              <h3 class="project-title">carterlavigne.dev</h3>
-              <p class="project-copy">
-                A responsive single-page portfolio built from scratch &mdash; no framework, no component library. Hand-rolled
-                layout system, scroll-reveal interactions, mobile-first breakpoints, and semantic markup, deployed to a custom
-                domain behind a CDN.
-              </p>
-              <div class="project-links">
-                <a class="project-link" href="https://github.com/spiderCSman" target="_blank" rel="noreferrer">GitHub &rarr;</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" class="section">
-        <div class="container">
-          <div class="section-header reveal">
-            <h2 class="section-title">Experience</h2>
-          </div>
-
-          <ol class="timeline">
-            <li class="timeline-item reveal">
-              <div class="timeline-when">08/2025 &ndash; Present</div>
-              <div class="timeline-body">
-                <h3 class="timeline-role">Web Developer <span class="timeline-note">(As needed)</span></h3>
-                <div class="timeline-org">Alliance Builders</div>
-                <ul class="timeline-points">
-                  <li>Currently building out the company website.</li>
-                  <li>Provide technical support when they need it.</li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="timeline-item reveal">
-              <div class="timeline-when">05/2023 &ndash; Present</div>
-              <div class="timeline-body">
-                <h3 class="timeline-role">Web &amp; Automation Developer <span class="timeline-note">(Freelance, as needed)</span></h3>
-                <div class="timeline-org">Team Murph &middot; San Antonio, TX</div>
-                <ul class="timeline-points">
-                  <li>Automated job-advertisement publishing across 350+ listings using Python and Power Automate, reducing manual posting time by ~80%.</li>
-                  <li>Built the recruiting landing page in custom HTML and CSS on WordPress, centralizing applicant intake.</li>
-                  <li>Still the person they call for updates and fixes to the production site.</li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="timeline-item reveal">
-              <div class="timeline-when">10/2024 &ndash; 12/2025</div>
-              <div class="timeline-body">
-                <h3 class="timeline-role">Projects Junior Officer</h3>
-                <div class="timeline-org">Association for Computing Machinery &mdash; UTSA</div>
-                <ul class="timeline-points">
-                  <li>Coordinated development of 3+ production platforms supporting university hackathons and ACM projects.</li>
-                  <li>Planned feature roadmaps and sprint priorities across 10+ developers and designers.</li>
-                  <li>Maintained production platforms supporting 1,000+ active users each semester.</li>
-                  <li>Established code standards and deployment processes for student engineering teams.</li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="timeline-item reveal">
-              <div class="timeline-when">05/2024 &ndash; 12/2025</div>
-              <div class="timeline-body">
-                <h3 class="timeline-role">Technical Organizer</h3>
-                <div class="timeline-org">RowdyHacks X &amp; XI &middot; San Antonio, TX</div>
-                <ul class="timeline-points">
-                  <li>Took a lead role in running RowdyHacks XI on the ground &mdash; set up judging, coordinated presentations, and kept the event's technical operations moving during the hackathon itself.</li>
-                  <li>Deployed and customized the event platform used by 500+ hackers for registration, schedules, and live updates.</li>
-                  <li>Shipped frontend improvements in TypeScript, Next.js, and Tailwind through GitHub pull requests.</li>
-                  <li>Resolved production frontend issues live, while the event was running.</li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="timeline-item reveal">
-              <div class="timeline-when">05/2021 &ndash; 08/2022</div>
-              <div class="timeline-body">
-                <h3 class="timeline-role">Superintendent</h3>
-                <div class="timeline-org">Construction Management and Development Inc. &middot; Austin, TX</div>
-                <ul class="timeline-points">
-                  <li>Supervised a $1.3M athletic facility renovation from planning through final inspection.</li>
-                  <li>Coordinated 15 subcontractors, architects, inspectors, and clients against schedule and budget.</li>
-                </ul>
-              </div>
-            </li>
-          </ol>
-
-          <div class="glass education-card reveal">
-            <div class="panel-label">Education</div>
-            <h3 class="education-school">University of Texas at San Antonio</h3>
-            <p class="education-degree">BS, Computer Science &mdash; Software Engineering &middot; August 2021 &ndash; December 2025</p>
-            <div class="tag-list">
-              <span class="tag">GPA 3.72</span>
-              <span class="tag">Honors Graduate</span>
-              <span class="tag">Dean's List, 8 of 9 semesters</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" class="section">
-        <div class="container">
-          <div class="section-header reveal">
-            <h2 class="section-title">Skills</h2>
-          </div>
-
-          <div class="skills-wrap">
-            <div class="glass skills-card reveal">
-              <h3>Languages</h3>
-              <div class="skills-list">
-                <span class="skill-pill">TypeScript</span>
-                <span class="skill-pill">JavaScript</span>
-                <span class="skill-pill">Python</span>
-                <span class="skill-pill">Java</span>
-                <span class="skill-pill">C</span>
-                <span class="skill-pill">SQL</span>
-                <span class="skill-pill">HTML</span>
-                <span class="skill-pill">CSS</span>
-                <span class="skill-pill">Bash</span>
-              </div>
-            </div>
-
-            <div class="glass skills-card reveal">
-              <h3>Frameworks &amp; Libraries</h3>
-              <div class="skills-list">
-                <span class="skill-pill">React</span>
-                <span class="skill-pill">Next.js</span>
-                <span class="skill-pill">React Native</span>
-                <span class="skill-pill">React Flow</span>
-                <span class="skill-pill">Tailwind CSS</span>
-                <span class="skill-pill">Node.js</span>
-              </div>
-            </div>
-
-            <div class="glass skills-card reveal">
-              <h3>Backend &amp; Data</h3>
-              <div class="skills-list">
-                <span class="skill-pill">PostgreSQL</span>
-                <span class="skill-pill">REST APIs</span>
-                <span class="skill-pill">Clerk auth</span>
-                <span class="skill-pill">OAuth</span>
-              </div>
-            </div>
-
-            <div class="glass skills-card reveal">
-              <h3>AI &amp; Tooling</h3>
-              <div class="skills-list">
-                <span class="skill-pill">LLM integration</span>
-                <span class="skill-pill">Prompt engineering</span>
-                <span class="skill-pill">Code generation</span>
-                <span class="skill-pill">Git &amp; code review</span>
-                <span class="skill-pill">Vercel</span>
-                <span class="skill-pill">Sandpack</span>
-                <span class="skill-pill">Power Automate</span>
-                <span class="skill-pill">Agile</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="section">
-        <div class="container">
-          <div class="section-header reveal">
-            <h2 class="section-title">Contact</h2>
-          </div>
-
-          <div class="glass contact-card reveal">
+          <article class="entry reveal">
+            <div class="entry-index">002</div>
             <div>
-              <p>
-                Interested in frontend engineering, full-stack product roles, and opportunities where strong UI, product sense, and technical execution all matter.
+              <h3 class="entry-title">HackKit</h3>
+              <p class="entry-sub">Open-source event software running five university hackathons.</p>
+              <p class="entry-body">
+                Core contributor to a platform serving 1,200+ participants across three UTSA hackathons, ASU SunHacks,
+                and UTD WeHacks. Built and maintained authentication, onboarding, and event management &mdash; the parts
+                that absorb thousands of logins in the first hour of an event.
+              </p>
+              <p class="entry-body">
+                Refactored frontend state management and REST integration for reliability, and built reusable React
+                components shared across every deployment.
               </p>
             </div>
-            <div class="contact-links">
-              <a class="btn btn-secondary" href="mailto:carterlavigne.jobs@gmail.com">Email</a>
-              <a class="btn btn-secondary" href="https://github.com/spiderCSman" target="_blank" rel="noreferrer">GitHub</a>
-              <a class="btn btn-secondary" href="https://www.linkedin.com/in/carter-m-lavigne/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <aside class="entry-aside">
+              <span class="year">2024 &ndash; 2025</span>
+              <div class="stack">
+                <span class="chip">Next.js</span>
+                <span class="chip">TypeScript</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">Clerk</span>
+                <span class="chip">Tailwind</span>
+              </div>
+              <div class="links">
+                <a class="link" href="https://github.com/acmutsa/HackKit" target="_blank" rel="noreferrer">GitHub <span class="arrow">&#8599;</span></a>
+              </div>
+            </aside>
+          </article>
+
+          <article class="entry reveal">
+            <div class="entry-index">003</div>
+            <div>
+              <h3 class="entry-title">Astronomix</h3>
+              <p class="entry-sub">AI tarot readings and a personal stock-portfolio tracker, in one app.</p>
+              <p class="entry-body">
+                Led the team on a full-stack build pairing AI-generated astrology and tarot readings with live portfolio
+                tracking. Wrote the Express API over a Turso (SQLite) database with parameterized queries, and wired
+                Google Gemini to a structured JSON response schema so tarot draws come back as usable data rather than
+                prose.
+              </p>
+              <p class="entry-body">
+                Seven client routes, six REST endpoints, and a schema built from scratch during the event.
+              </p>
+            </div>
+            <aside class="entry-aside">
+              <span class="year">HackTX 2025</span>
+              <div class="stack">
+                <span class="chip">React 19</span>
+                <span class="chip">Vite</span>
+                <span class="chip">Node.js</span>
+                <span class="chip">Express</span>
+                <span class="chip">Turso</span>
+                <span class="chip">Gemini</span>
+                <span class="chip">Recharts</span>
+              </div>
+              <div class="links">
+                <a class="link" href="https://github.com/spiderCSman/HackTX2025" target="_blank" rel="noreferrer">GitHub <span class="arrow">&#8599;</span></a>
+              </div>
+            </aside>
+          </article>
+
+          <article class="entry reveal">
+            <div class="entry-index">004</div>
+            <div>
+              <h3 class="entry-title">RowdyHacks X &amp; XI</h3>
+              <p class="entry-sub">The event platform 500+ hackers used to register, schedule, and follow along.</p>
+              <p class="entry-body">
+                Deployed and customized the platform across two years, shipping frontend work through pull requests into
+                a shared codebase &mdash; including fixing production issues while the event was running.
+              </p>
+            </div>
+            <aside class="entry-aside">
+              <span class="year">2024 &ndash; 2025</span>
+              <div class="stack">
+                <span class="chip">TypeScript</span>
+                <span class="chip">Next.js</span>
+                <span class="chip">Tailwind</span>
+              </div>
+              <div class="links">
+                <a class="link" href="https://xi.rowdyhacks.org/" target="_blank" rel="noreferrer">xi.rowdyhacks.org <span class="arrow">&#8599;</span></a>
+                <a class="link" href="https://x.rowdyhacks.org/" target="_blank" rel="noreferrer">x.rowdyhacks.org <span class="arrow">&#8599;</span></a>
+                <a class="link" href="https://github.com/acmutsa/RowdyHacksXI" target="_blank" rel="noreferrer">Code <span class="arrow">&#8599;</span></a>
+              </div>
+            </aside>
+          </article>
+
+          <article class="entry reveal">
+            <div class="entry-index">005</div>
+            <div>
+              <h3 class="entry-title">Recruiting Pipeline Automation</h3>
+              <p class="entry-sub">Replaced a job someone used to do by hand, 350 listings at a time.</p>
+              <p class="entry-body">
+                Automated job-advertisement publishing across 350+ listings, cutting manual posting time by roughly 80%.
+                Built the recruiting landing page that centralized applicant intake, and still maintain the production
+                site.
+              </p>
+            </div>
+            <aside class="entry-aside">
+              <span class="year">Team Murph</span>
+              <div class="stack">
+                <span class="chip">Python</span>
+                <span class="chip">Power Automate</span>
+                <span class="chip">WordPress</span>
+              </div>
+            </aside>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — Playground -->
+    <section class="section" id="playground">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-num">02</div>
+          <h2 class="section-title">Playground</h2>
+          <p class="section-note">
+            Small things built because they were fun to build. Each one is live &mdash; click in and use it.
+          </p>
+        </div>
+
+        <div class="entries">
+          <a class="demo-row reveal" href="projects/todo/index.html">
+            <div class="entry-index">A</div>
+            <div>
+              <h3 class="entry-title">Todo <span class="year">Live demo</span></h3>
+              <p class="entry-body">
+                Drag to reorder, double-click to edit, persists between visits. No framework, no dependencies, no build
+                step &mdash; and it still handles keyboard reordering and blocked storage without falling over.
+              </p>
+            </div>
+            <aside class="entry-aside">
+              <div class="stack">
+                <span class="chip">Vanilla JS</span>
+                <span class="chip">localStorage</span>
+                <span class="chip">Drag &amp; drop</span>
+                <span class="chip">A11y</span>
+              </div>
+              <span class="link">Open it <span class="arrow">&rarr;</span></span>
+            </aside>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — Experience -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-num">03</div>
+          <h2 class="section-title">Experience</h2>
+        </div>
+
+        <div class="roles">
+          <article class="role reveal">
+            <div class="role-when">05/2026 &mdash; Present</div>
+            <div>
+              <h3 class="role-title">Web Developer</h3>
+              <div class="role-org">Alliance Builders</div>
+            </div>
+            <ul class="role-points">
+              <li>Independently leading a ground-up rebuild of the company website on WordPress as sole developer &mdash; layout, page structure, and content organization.</li>
+            </ul>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-when">05/2023 &mdash; As needed</div>
+            <div>
+              <h3 class="role-title">Web &amp; Automation Consultant <span class="role-note">(Freelance)</span></h3>
+              <div class="role-org">Team Murph &middot; San Antonio, TX</div>
+            </div>
+            <ul class="role-points">
+              <li>Automated job-advertisement publishing across 350+ listings using Python and Power Automate, reducing manual posting time by roughly 80%.</li>
+              <li>Built the recruiting landing page in custom HTML and CSS on WordPress, centralizing applicant intake.</li>
+              <li>Maintain and extend the production site &mdash; ongoing updates, fixes, and content structure.</li>
+            </ul>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-when">10/2024 &mdash; 12/2025</div>
+            <div>
+              <h3 class="role-title">Projects Junior Officer</h3>
+              <div class="role-org">Association for Computing Machinery &mdash; UTSA</div>
+            </div>
+            <ul class="role-points">
+              <li>Coordinated development of 3+ production platforms supporting university hackathons and ACM projects.</li>
+              <li>Planned feature roadmaps and sprint priorities across 10+ developers and designers using Trello and Notion.</li>
+              <li>Maintained production platforms supporting 1,000+ active users each semester.</li>
+              <li>Established code standards and deployment processes for student engineering teams.</li>
+            </ul>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-when">05/2024 &mdash; 12/2025</div>
+            <div>
+              <h3 class="role-title">Technical Organizer</h3>
+              <div class="role-org">RowdyHacks X &amp; XI &middot; San Antonio, TX</div>
+            </div>
+            <ul class="role-points">
+              <li>Led setup and execution of judging, presentations, and live event operations for RowdyHacks XI.</li>
+              <li>Deployed and customized the event platform used by 500+ hackers for registration, schedules, and live updates.</li>
+              <li>Shipped frontend improvements in TypeScript, Next.js, and Tailwind through GitHub pull requests.</li>
+              <li>Resolved production frontend issues live, while the event was running.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="prior reveal">
+          <div class="mono">Before software</div>
+          <p class="prior-copy">
+            I ran construction before I wrote code, and it is where I learned to work to a deadline that does not move.
+          </p>
+          <ul class="prior-list">
+            <li>
+              <strong>Superintendent</strong> &mdash; Construction Management and Development Inc., Austin, TX &middot;
+              05/2021 &ndash; 08/2022. Supervised a $1.3M athletic facility renovation from planning through final
+              inspection, coordinating 15 subcontractors, architects, and inspectors against schedule and budget.
+            </li>
+            <li>
+              <strong>Superintendent</strong> (part-time) &mdash; Alliance Builders &middot; 08/2025 &ndash; Present.
+              Supervise on-site logistics and project scheduling for active construction work.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — Background -->
+    <section class="section" id="background">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-num">04</div>
+          <h2 class="section-title">Background</h2>
+        </div>
+
+        <div class="cards">
+          <div class="card reveal">
+            <div class="mono">Education</div>
+            <h3>University of Texas at San Antonio</h3>
+            <p class="card-sub">BS, Computer Science &mdash; Software Engineering &middot; August 2021 &ndash; December 2025</p>
+            <div class="stack">
+              <span class="chip">GPA 3.72</span>
+              <span class="chip">Honors Graduate</span>
+              <span class="chip">Dean's List, 8 of 9 semesters</span>
+            </div>
+            <p class="card-course">
+              <strong>Coursework</strong> &mdash; Cloud Computing (AWS) &middot; Data Structures &middot; Algorithms
+              &middot; Object-Oriented Programming &middot; Database Systems
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <div class="mono">Certifications</div>
+            <h3>Google AI Essentials</h3>
+            <p class="card-sub">Specialization &middot; all courses completed</p>
+            <div class="stack">
+              <span class="chip">Generative AI</span>
+              <span class="chip">Prompting</span>
+              <span class="chip">AI at work</span>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container">
-        © <span id="copyright-year"></span> Carter LaVigne
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <!-- 05 — Skills -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-num">05</div>
+          <h2 class="section-title">Skills</h2>
+        </div>
+
+        <div class="skills">
+          <div class="skill-row reveal">
+            <div class="entry-index">01</div>
+            <div class="skill-name">Languages</div>
+            <div class="skill-items">
+              <span>TypeScript</span><span>JavaScript</span><span>Python</span><span>Java</span><span>C</span><span>SQL</span><span>HTML5</span><span>CSS3</span><span>Bash</span>
+            </div>
+          </div>
+
+          <div class="skill-row reveal">
+            <div class="entry-index">02</div>
+            <div class="skill-name">Frameworks</div>
+            <div class="skill-items">
+              <span>React</span><span>React Hooks</span><span>Next.js</span><span>React Native</span><span>React Router</span><span>React Flow</span><span>Tailwind CSS</span><span>Framer Motion</span><span>Recharts</span><span>Vite</span>
+            </div>
+          </div>
+
+          <div class="skill-row reveal">
+            <div class="entry-index">03</div>
+            <div class="skill-name">Backend &amp; Data</div>
+            <div class="skill-items">
+              <span>Node.js</span><span>Express</span><span>REST API design</span><span>PostgreSQL</span><span>SQLite / Turso</span><span>Relational schema design</span><span>Parameterized SQL</span><span>Clerk</span><span>OAuth</span>
+            </div>
+          </div>
+
+          <div class="skill-row reveal">
+            <div class="entry-index">04</div>
+            <div class="skill-name">AI</div>
+            <div class="skill-items">
+              <span>LLM integration</span><span>Google Gemini API</span><span>Prompt engineering</span><span>Generative AI</span><span>Code generation</span><span>Multimodal input</span>
+            </div>
+          </div>
+
+          <div class="skill-row reveal">
+            <div class="entry-index">05</div>
+            <div class="skill-name">Tools</div>
+            <div class="skill-items">
+              <span>Git</span><span>GitHub</span><span>Pull requests</span><span>Code review</span><span>Vercel</span><span>Sandpack</span><span>ESLint</span><span>Trello</span><span>Notion</span><span>Power Automate</span><span>Android Studio</span>
+            </div>
+          </div>
+
+          <div class="skill-row reveal">
+            <div class="entry-index">06</div>
+            <div class="skill-name">Practice</div>
+            <div class="skill-items">
+              <span>SDLC</span><span>Agile</span><span>Sprint planning</span><span>Debugging</span><span>Responsive design</span><span>Accessibility</span><span>Cross-browser</span><span>Technical documentation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <h2>Let's build <em>something.</em></h2>
+        <p class="contact-lede">
+          I'm looking for frontend and full-stack engineering roles where strong UI, product sense, and technical
+          execution all matter. The fastest way to reach me is email.
+        </p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:carterlavigne.jobs@gmail.com">carterlavigne.jobs@gmail.com <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-ghost" href="https://github.com/spiderCSman" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/carter-m-lavigne/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>&copy; <span id="year"></span> Carter LaVigne</span>
+      <span>Austin, Texas</span>
+      <span>Built from scratch &mdash; no framework</span>
+    </div>
+  </footer>
 
   <script src="app.js" defer></script>
 </body>
