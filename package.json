@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "live-server docs --port=3000 --open=/index.html",
-    "dev:3d": "live-server docs --port=3100 --open=/3d/index.html"
+    "dev:staging": "live-server docs --port=3100 --open=/staging/index.html"
   },
   "keywords": [
     "portfolio",
