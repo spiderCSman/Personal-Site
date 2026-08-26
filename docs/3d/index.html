@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carter LaVigne | Software Engineer &mdash; 3D</title>
+  <meta name="description" content="Carter LaVigne — software engineer in Austin, TX. A navigable 3D version of the portfolio." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e0d0c" media="(prefers-color-scheme: dark)" />
+
+  <!-- Theme before first paint, same contract as the main site. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("clv.theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png?v=6" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png?v=6" />
+  <link rel="shortcut icon" href="/image/favicon.ico?v=6" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/image/apple-touch-icon.png?v=6" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+
+<body class="is-booting">
+  <a class="skip-link" href="#stations">Skip to content</a>
+
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <div class="boot" id="boot" role="status" aria-live="polite">
+    <div class="boot-inner mono">
+      <span class="boot-label">Building the space</span>
+      <span class="boot-bar"><i id="boot-fill"></i></span>
+    </div>
+  </div>
+
+  <header class="hud hud-top">
+    <a class="brand" href="/">Carter LaVigne<span>.</span></a>
+    <div class="hud-tools">
+      <a class="hud-btn mono" href="/">Flat version</a>
+      <button class="hud-btn icon" type="button" id="theme-toggle" aria-label="Switch theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" />
+          <path d="M12 2.4v2.4M12 19.2v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.4 12h2.4M19.2 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="rail mono" id="rail" aria-label="Sections">
+    <button type="button" data-goto="0"><span class="rail-n">00</span><span class="rail-l">Intro</span></button>
+    <button type="button" data-goto="2"><span class="rail-n">01</span><span class="rail-l">Work</span></button>
+    <button type="button" data-goto="8"><span class="rail-n">02</span><span class="rail-l">Playground</span></button>
+    <button type="button" data-goto="9"><span class="rail-n">03</span><span class="rail-l">Experience</span></button>
+    <button type="button" data-goto="10"><span class="rail-n">04</span><span class="rail-l">Background</span></button>
+    <button type="button" data-goto="11"><span class="rail-n">05</span><span class="rail-l">Skills</span></button>
+    <button type="button" data-goto="12"><span class="rail-n">06</span><span class="rail-l">Contact</span></button>
+  </nav>
+
+  <main class="stations" id="stations">
+
+    <!-- 00 -->
+    <article class="station" data-station="0" data-side="center">
+      <div class="panel panel-hero">
+        <div class="panel-meta mono">
+          <span><i class="dot"></i> Open to software engineering roles</span>
+          <span>Austin, Texas</span>
+        </div>
+        <h1 class="panel-display">Software that holds up when <em>people actually use it.</em></h1>
+        <p class="panel-lede">
+          I'm Carter LaVigne. I build React and Next.js applications that ship to real users &mdash; including an
+          open-source platform serving <strong>1,200+ participants</strong> across five university hackathons, and
+          full-stack work spanning Express APIs, relational schemas, and LLM integration.
+        </p>
+        <p class="panel-hint mono">Scroll, drag, or press &darr; to move forward</p>
+      </div>
+    </article>
+
+    <!-- 01 -->
+    <article class="station" data-station="1" data-side="center">
+      <div class="panel panel-figures">
+        <div class="fig"><b>1,200+</b><span>Participants served by HackKit across three UTSA hackathons, ASU SunHacks, and UTD WeHacks.</span></div>
+        <div class="fig"><b>$4,000</b><span>Grand Prize &mdash; Best Overall at HackTX 2024, out of 150+ competing teams.</span></div>
+        <div class="fig"><b>3.72</b><span>GPA at UTSA. Honors Graduate, Dean's List 8 of 9 semesters.</span></div>
+        <div class="fig"><b>~80%</b><span>Less manual posting time after automating 350+ job listings in Python and Power Automate.</span></div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="station" data-station="2" data-side="center">
+      <div class="panel panel-title-card">
+        <div class="panel-num mono">01</div>
+        <h2 class="panel-display">Selected Work</h2>
+        <p class="panel-lede">Five projects, all shipped. Every one has a link &mdash; go look at the code.</p>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="station" data-station="3" data-side="left">
+      <div class="panel">
+        <div class="panel-meta mono"><span>001</span><span>Nov 2024</span></div>
+        <h2 class="panel-h">AIAIO</h2>
+        <p class="panel-sub">Turns design mockups and written prompts into working React components.</p>
+        <p>
+          Part of the four-person team behind an AI-assisted prototyping system. Diagram-based editing runs on React
+          Flow and TLDRAW; Sandpack compiles the generated code so you see it running in the browser immediately.
+        </p>
+        <p>A working prototype in 24 hours &mdash; and Best Overall plus the $4,000 Grand Prize against 150+ teams. My first hackathon.</p>
+        <div class="award mono">Best Overall &middot; HackTX 2024</div>
+        <div class="chips mono"><span>Next.js</span><span>TypeScript</span><span>React Flow</span><span>TLDRAW</span><span>Sandpack</span><span>LLM APIs</span></div>
+        <div class="links mono">
+          <a href="https://devpost.com/software/aiaio" target="_blank" rel="noreferrer">Devpost &#8599;</a>
+          <a href="https://github.com/lryanle/AIAIO" target="_blank" rel="noreferrer">GitHub &#8599;</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 -->
+    <article class="station" data-station="4" data-side="right">
+      <div class="panel">
+        <div class="panel-meta mono"><span>002</span><span>2024 &ndash; 2025</span></div>
+        <h2 class="panel-h">HackKit</h2>
+        <p class="panel-sub">Open-source event software running five university hackathons.</p>
+        <p>
+          Core contributor to a platform serving 1,200+ participants across three UTSA hackathons, ASU SunHacks, and
+          UTD WeHacks. Built and maintained authentication, onboarding, and event management &mdash; the parts that
+          absorb thousands of logins in the first hour of an event.
+        </p>
+        <p>Refactored frontend state management and REST integration for reliability, and built reusable React components shared across every deployment.</p>
+        <div class="chips mono"><span>Next.js</span><span>TypeScript</span><span>PostgreSQL</span><span>Clerk</span><span>Tailwind</span></div>
+        <div class="links mono"><a href="https://github.com/acmutsa/HackKit" target="_blank" rel="noreferrer">GitHub &#8599;</a></div>
+      </div>
+    </article>
+
+    <!-- 05 -->
+    <article class="station" data-station="5" data-side="left">
+      <div class="panel">
+        <div class="panel-meta mono"><span>003</span><span>HackTX 2025</span></div>
+        <h2 class="panel-h">Astronomix</h2>
+        <p class="panel-sub">AI tarot readings and a personal stock-portfolio tracker, in one app.</p>
+        <p>
+          Led the team on a full-stack build pairing AI-generated astrology and tarot readings with live portfolio
+          tracking. Wrote the Express API over a Turso (SQLite) database with parameterized queries, and wired Google
+          Gemini to a structured JSON response schema so tarot draws come back as usable data rather than prose.
+        </p>
+        <p>Seven client routes, six REST endpoints, and a schema built from scratch during the event.</p>
+        <div class="chips mono"><span>React 19</span><span>Vite</span><span>Node.js</span><span>Express</span><span>Turso</span><span>Gemini</span><span>Recharts</span></div>
+        <div class="links mono"><a href="https://github.com/spiderCSman/HackTX2025" target="_blank" rel="noreferrer">GitHub &#8599;</a></div>
+      </div>
+    </article>
+
+    <!-- 06 -->
+    <article class="station" data-station="6" data-side="right">
+      <div class="panel">
+        <div class="panel-meta mono"><span>004</span><span>2024 &ndash; 2025</span></div>
+        <h2 class="panel-h">RowdyHacks X &amp; XI</h2>
+        <p class="panel-sub">The event platform 500+ hackers used to register, schedule, and follow along.</p>
+        <p>
+          Deployed and customized the platform across two years, shipping frontend work through pull requests into a
+          shared codebase &mdash; including fixing production issues while the event was running.
+        </p>
+        <div class="chips mono"><span>TypeScript</span><span>Next.js</span><span>Tailwind</span></div>
+        <div class="links mono">
+          <a href="https://xi.rowdyhacks.org/" target="_blank" rel="noreferrer">xi.rowdyhacks.org &#8599;</a>
+          <a href="https://x.rowdyhacks.org/" target="_blank" rel="noreferrer">x.rowdyhacks.org &#8599;</a>
+          <a href="https://github.com/acmutsa/RowdyHacksXI" target="_blank" rel="noreferrer">Code &#8599;</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 07 -->
+    <article class="station" data-station="7" data-side="left">
+      <div class="panel">
+        <div class="panel-meta mono"><span>005</span><span>Team Murph</span></div>
+        <h2 class="panel-h">Recruiting Pipeline Automation</h2>
+        <p class="panel-sub">Replaced a job someone used to do by hand, 350 listings at a time.</p>
+        <p>
+          Automated job-advertisement publishing across 350+ listings, cutting manual posting time by roughly 80%.
+          Built the recruiting landing page that centralized applicant intake, and still maintain the production site.
+        </p>
+        <div class="chips mono"><span>Python</span><span>Power Automate</span><span>WordPress</span></div>
+      </div>
+    </article>
+
+    <!-- 08 -->
+    <article class="station" data-station="8" data-side="center">
+      <div class="panel panel-title-card">
+        <div class="panel-num mono">02</div>
+        <h2 class="panel-display">Playground</h2>
+        <p class="panel-lede">Small things built because they were fun to build. Each one is live &mdash; click in and use it.</p>
+        <div class="panel-inset">
+          <h3 class="panel-h">Todo <span class="mono tag">Live demo</span></h3>
+          <p>
+            Drag to reorder, double-click to edit, persists between visits. No framework, no dependencies, no build
+            step &mdash; and it still handles keyboard reordering and blocked storage without falling over.
+          </p>
+          <div class="chips mono"><span>Vanilla JS</span><span>localStorage</span><span>Drag &amp; drop</span><span>A11y</span></div>
+          <div class="links mono"><a href="/projects/todo/index.html">Open it &rarr;</a></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 09 -->
+    <article class="station" data-station="9" data-side="center">
+      <div class="panel panel-wide">
+        <div class="panel-num mono">03</div>
+        <h2 class="panel-display">Experience</h2>
+        <div class="roles">
+          <div class="role">
+            <div class="role-when mono">05/2026 &mdash; Present</div>
+            <h3 class="panel-h">Web Developer <span class="org">Alliance Builders</span></h3>
+            <ul><li>Independently leading a ground-up rebuild of the company website on WordPress as sole developer &mdash; layout, page structure, and content organization.</li></ul>
+          </div>
+          <div class="role">
+            <div class="role-when mono">05/2023 &mdash; As needed</div>
+            <h3 class="panel-h">Web &amp; Automation Consultant <span class="org">Team Murph &middot; San Antonio, TX</span></h3>
+            <ul>
+              <li>Automated job-advertisement publishing across 350+ listings using Python and Power Automate, reducing manual posting time by roughly 80%.</li>
+              <li>Built the recruiting landing page in custom HTML and CSS on WordPress, centralizing applicant intake.</li>
+              <li>Maintain and extend the production site &mdash; ongoing updates, fixes, and content structure.</li>
+            </ul>
+          </div>
+          <div class="role">
+            <div class="role-when mono">10/2024 &mdash; 12/2025</div>
+            <h3 class="panel-h">Projects Junior Officer <span class="org">ACM &mdash; UTSA</span></h3>
+            <ul>
+              <li>Coordinated development of 3+ production platforms supporting university hackathons and ACM projects.</li>
+              <li>Planned feature roadmaps and sprint priorities across 10+ developers and designers.</li>
+              <li>Maintained production platforms supporting 1,000+ active users each semester.</li>
+            </ul>
+          </div>
+          <div class="role">
+            <div class="role-when mono">05/2024 &mdash; 12/2025</div>
+            <h3 class="panel-h">Technical Organizer <span class="org">RowdyHacks X &amp; XI</span></h3>
+            <ul>
+              <li>Led setup and execution of judging, presentations, and live event operations for RowdyHacks XI.</li>
+              <li>Deployed and customized the event platform used by 500+ hackers.</li>
+              <li>Resolved production frontend issues live, while the event was running.</li>
+            </ul>
+          </div>
+          <div class="role prior">
+            <div class="role-when mono">Before software</div>
+            <p>I ran construction before I wrote code, and it is where I learned to work to a deadline that does not move.</p>
+            <ul>
+              <li><strong>Superintendent</strong> &mdash; Construction Management and Development Inc., Austin, TX &middot; 05/2021 &ndash; 08/2022. Supervised a $1.3M athletic facility renovation, coordinating 15 subcontractors, architects, and inspectors.</li>
+              <li><strong>Superintendent</strong> (part-time) &mdash; Alliance Builders &middot; 08/2025 &ndash; Present. On-site logistics and project scheduling.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="station" data-station="10" data-side="center">
+      <div class="panel panel-wide">
+        <div class="panel-num mono">04</div>
+        <h2 class="panel-display">Background</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="mono tag">Education</div>
+            <h3 class="panel-h">University of Texas at San Antonio</h3>
+            <p class="panel-sub">BS, Computer Science &mdash; Software Engineering &middot; August 2021 &ndash; December 2025</p>
+            <div class="chips mono"><span>GPA 3.72</span><span>Honors Graduate</span><span>Dean's List, 8 of 9 semesters</span></div>
+            <p class="fine"><strong>Coursework</strong> &mdash; Cloud Computing (AWS) &middot; Data Structures &middot; Algorithms &middot; Object-Oriented Programming &middot; Database Systems</p>
+          </div>
+          <div class="card">
+            <div class="mono tag">Certifications</div>
+            <h3 class="panel-h">Google AI Essentials</h3>
+            <p class="panel-sub">Specialization &middot; all courses completed</p>
+            <div class="chips mono"><span>Generative AI</span><span>Prompting</span><span>AI at work</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 11 -->
+    <article class="station" data-station="11" data-side="center">
+      <div class="panel panel-wide">
+        <div class="panel-num mono">05</div>
+        <h2 class="panel-display">Skills</h2>
+        <div class="skills">
+          <div class="skill"><div class="skill-name mono">Languages</div><div class="chips mono"><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>Java</span><span>C</span><span>SQL</span><span>HTML5</span><span>CSS3</span><span>Bash</span></div></div>
+          <div class="skill"><div class="skill-name mono">Frameworks</div><div class="chips mono"><span>React</span><span>Next.js</span><span>React Native</span><span>React Router</span><span>React Flow</span><span>Tailwind CSS</span><span>Framer Motion</span><span>Recharts</span><span>Vite</span></div></div>
+          <div class="skill"><div class="skill-name mono">Backend &amp; Data</div><div class="chips mono"><span>Node.js</span><span>Express</span><span>REST API design</span><span>PostgreSQL</span><span>SQLite / Turso</span><span>Relational schema design</span><span>Parameterized SQL</span><span>Clerk</span><span>OAuth</span></div></div>
+          <div class="skill"><div class="skill-name mono">AI</div><div class="chips mono"><span>LLM integration</span><span>Google Gemini API</span><span>Prompt engineering</span><span>Generative AI</span><span>Code generation</span><span>Multimodal input</span></div></div>
+          <div class="skill"><div class="skill-name mono">Tools</div><div class="chips mono"><span>Git</span><span>GitHub</span><span>Pull requests</span><span>Code review</span><span>Vercel</span><span>Sandpack</span><span>ESLint</span><span>Trello</span><span>Notion</span><span>Power Automate</span><span>Android Studio</span></div></div>
+          <div class="skill"><div class="skill-name mono">Practice</div><div class="chips mono"><span>SDLC</span><span>Agile</span><span>Sprint planning</span><span>Debugging</span><span>Responsive design</span><span>Accessibility</span><span>Cross-browser</span><span>Technical documentation</span></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 12 -->
+    <article class="station" data-station="12" data-side="center">
+      <div class="panel panel-hero">
+        <h2 class="panel-display">Let's build <em>something.</em></h2>
+        <p class="panel-lede">
+          I'm looking for frontend and full-stack engineering roles where strong UI, product sense, and technical
+          execution all matter. The fastest way to reach me is email.
+        </p>
+        <div class="links big mono">
+          <a class="primary" href="mailto:carterlavigne.jobs@gmail.com">carterlavigne.jobs@gmail.com &rarr;</a>
+          <a href="https://github.com/spiderCSman" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/carter-m-lavigne/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+        <p class="panel-hint mono">Built from scratch &mdash; three.js, no bundler, no framework</p>
+      </div>
+    </article>
+
+  </main>
+
+  <div class="hud hud-bottom mono">
+    <span class="progress"><i id="progress-fill"></i></span>
+    <span id="hud-pos">00 / 12</span>
+    <span class="keys">scroll &middot; drag &middot; &uarr;&darr; &middot; 1&ndash;7</span>
+  </div>
+
+  <div class="fallback mono" id="no-webgl" hidden>
+    <p>
+      This 3D version needs WebGL.<br />
+      <a href="/">Open the standard site &rarr;</a>
+    </p>
+  </div>
+
+  <noscript>
+    <div class="fallback mono">
+      This 3D version needs JavaScript. The standard site is at
+      <a href="/">carterlavigne.dev</a>.
+    </div>
+  </noscript>
+
+  <script type="module" src="scene.js"></script>
+</body>
+</html>

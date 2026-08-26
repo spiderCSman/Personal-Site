@@ -1,0 +1,27 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "exec",
+        "live-server",
+        "docs",
+        "--no-browser"
+      ],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "dev-3d",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "run",
+        "dev:3d"
+      ],
+      "port": 3100,
+      "autoPort": true
+    }
+  ]
+}

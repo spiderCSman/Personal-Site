@@ -79,6 +79,31 @@ if (revealItems.length) {
   revealItems.forEach((item) => observer.observe(item));
 }
 
+/* --- Local: the way back to the 3D build ----------------------------------
+   The 3D build ships with the site at /3d. This link is deliberately
+   local-only for now — nothing on the live site points at it yet.       */
+
+const LOCAL_HOSTS = ["localhost", "127.0.0.1", "[::1]"];
+const headerTools = document.querySelector(".header-tools");
+
+if (headerTools && LOCAL_HOSTS.includes(location.hostname)) {
+  // Confirm the mount is actually there before offering it. A dev server
+  // started before /3d was configured would otherwise show a link to a 404.
+  fetch("/3d/index.html", { method: "HEAD" })
+    .then((res) => {
+      if (!res.ok) return;
+      const labLink = document.createElement("a");
+      labLink.className = "lab-link";
+      labLink.href = "/3d/index.html";
+      labLink.textContent = "3D";
+      labLink.setAttribute("aria-label", "Open the local 3D build");
+      headerTools.insertBefore(labLink, headerTools.firstChild);
+    })
+    .catch(() => {
+      // No 3D build being served — leave the header alone.
+    });
+}
+
 /* --- Footer year ----------------------------------------------------------- */
 
 const year = document.getElementById("year");

@@ -249,6 +249,40 @@ img {
   background: var(--bg-tint);
 }
 
+/* Local-only link across to the 3D build. /experiments sits outside docs/ and
+   is never published, so app.js injects this only when the repo root is being
+   served locally — it does not exist in production. */
+.lab-link {
+  display: grid;
+  place-items: center;
+  height: 38px;
+  padding: 0 11px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.lab-link:hover {
+  border-color: var(--rule-strong);
+  color: var(--ink);
+  background: var(--bg-tint);
+}
+
+/* Between the mobile breakpoint and ~820px the full nav and the header tools
+   already crowd each other, so keep this local-only extra out of that band. */
+@media (min-width: 701px) and (max-width: 820px) {
+  .lab-link {
+    display: none;
+  }
+}
+
 .theme-toggle svg {
   width: 16px;
   height: 16px;
