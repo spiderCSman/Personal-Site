@@ -97,6 +97,7 @@
       <input type="password" id="pass" aria-label="Passphrase" autocomplete="current-password" required />
       <label><input type="checkbox" id="remember" checked /> Keep me unlocked on this device</label>
       <button class="btn btn-primary" id="go" type="submit">Unlock</button>
+      <button class="btn" id="pkGo" type="button" style="width:100%;padding:12px;margin-top:10px" hidden>Unlock with passkey</button>
       <div class="err" id="err" role="alert"></div>
     </form>
   </section>
@@ -104,7 +105,10 @@
   <div id="app" hidden>
     <header><div class="wrap">
       <a class="brand" href="../">Carter LaVigne<span>.</span></a>
-      <button class="btn" id="lockBtn" type="button">Lock</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn" id="pkAdd" type="button" hidden>Add passkey</button>
+        <button class="btn" id="lockBtn" type="button">Lock</button>
+      </div>
     </div></header>
     <main class="wrap">
       <h1 id="title"></h1>
@@ -167,18 +171,65 @@
     return JSON.parse(new TextDecoder().decode(plain));
   }
 
+  let sessionPass = null; // kept in memory only, so "Add passkey" works right after a passphrase unlock
+
+  async function unlockWith(pass) {
+    const priv = await unwrapPrivate(pass, false);
+    const data = await decryptData(priv);
+    if ($("remember").checked) await saveKey(priv);
+    sessionPass = pass;
+    show(data);
+  }
+
   $("unlock").addEventListener("submit", async (ev) => {
     ev.preventDefault();
     $("err").textContent = ""; $("go").disabled = true; $("go").textContent = "Unlocking…";
+    try { await unlockWith($("pass").value); $("pass").value = ""; }
+    catch (e) { $("err").textContent = "That passphrase didn't work."; }
+    finally { $("go").disabled = false; $("go").textContent = "Unlock"; }
+  });
+
+  // Passkeys: the passphrase is stored as the passkey's user handle, which iCloud Keychain syncs
+  // and only hands back after Face ID / Touch ID. No server needed.
+  const pkSupported = !!(window.PublicKeyCredential && navigator.credentials);
+  const rnd = (n) => crypto.getRandomValues(new Uint8Array(n));
+  if (pkSupported) { $("pkGo").hidden = false; }
+
+  $("pkGo").addEventListener("click", async () => {
+    $("err").textContent = "";
     try {
-      const priv = await unwrapPrivate($("pass").value, false);
-      const data = await decryptData(priv);
-      if ($("remember").checked) await saveKey(priv);
-      $("pass").value = "";
-      show(data);
+      const cred = await navigator.credentials.get({ publicKey: { challenge: rnd(32), rpId: location.hostname, userVerification: "required", allowCredentials: [], timeout: 60000 } });
+      const handle = cred && cred.response.userHandle;
+      if (!handle || !handle.byteLength) throw new Error("no handle");
+      await unlockWith(new TextDecoder().decode(handle));
     } catch (e) {
-      $("err").textContent = "That passphrase didn't work.";
-    } finally { $("go").disabled = false; $("go").textContent = "Unlock"; }
+      if (e && e.name === "NotAllowedError") return; // user cancelled
+      $("err").textContent = "That passkey didn't work. Use the passphrase, then add a new passkey.";
+    }
+  });
+
+  $("pkAdd").addEventListener("click", async () => {
+    let pass = sessionPass;
+    if (!pass) {
+      pass = prompt("Enter the passphrase once to create a passkey:");
+      if (!pass) return;
+      try { await unwrapPrivate(pass, false); } catch { alert("That passphrase didn't work."); return; }
+    }
+    try {
+      await navigator.credentials.create({ publicKey: {
+        challenge: rnd(32),
+        rp: { id: location.hostname, name: "Carter LaVigne" },
+        user: { id: new TextEncoder().encode(pass), name: "Job tracker", displayName: "Job tracker" },
+        pubKeyCredParams: [{ type: "public-key", alg: -7 }, { type: "public-key", alg: -257 }],
+        authenticatorSelection: { residentKey: "required", requireResidentKey: true, userVerification: "required" },
+        timeout: 60000,
+      } });
+      sessionPass = pass;
+      $("pkAdd").textContent = "Passkey added";
+      $("pkAdd").disabled = true;
+    } catch (e) {
+      if (e && e.name !== "NotAllowedError") alert("Couldn't create the passkey on this device.");
+    }
   });
 
   $("lockBtn").addEventListener("click", async () => { await forgetKey(); location.reload(); });
@@ -196,6 +247,7 @@
 
   function show(d) {
     $("lock").hidden = true; $("app").hidden = false;
+    $("pkAdd").hidden = !pkSupported;
     document.title = "Job search tracker";
     const apps = d.applications;
     const sub = apps.filter((a) => a.type !== "unsubmitted");
