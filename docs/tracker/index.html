@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Private</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../image/favicon-32x32.png?v=6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fbfaf7; --bg-tint: #f4f2ec; --surface: #fff; --ink: #14130f; --ink-soft: #55524a; --ink-faint: #8a8578;
+      --rule: #e4e0d6; --rule-strong: #cbc5b6; --accent: #5b34e8; --accent-wash: rgba(91,52,232,.08);
+      --good: #1f7a4d; --good-wash: rgba(31,122,77,.1); --warn: #a1620a; --warn-wash: rgba(161,98,10,.1);
+      --bad: #a8322b; --bad-wash: rgba(168,50,43,.08);
+      --display: "Instrument Serif", Georgia, serif; --sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0e0d0c; --bg-tint: #171614; --surface: #1b1a17; --ink: #f1eee6; --ink-soft: #b4afa3; --ink-faint: #7d786d;
+        --rule: #2c2a26; --rule-strong: #403d37; --accent: #a48cff; --accent-wash: rgba(164,140,255,.12);
+        --good: #5cc48f; --good-wash: rgba(92,196,143,.12); --warn: #e0a84a; --warn-wash: rgba(224,168,74,.12);
+        --bad: #ef7d74; --bad-wash: rgba(239,125,116,.1); color-scheme: dark; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+    header { border-bottom: 1px solid var(--rule); }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .brand { font-weight: 600; color: var(--ink); text-decoration: none; }
+    .brand span { color: var(--accent); }
+    .mono { font-family: var(--mono); font-size: .76rem; color: var(--ink-faint); letter-spacing: .02em; }
+    h1 { font: 400 clamp(2.4rem, 6vw, 3.8rem)/1.05 var(--display); margin: 36px 0 8px; letter-spacing: -.01em; }
+    h2 { font: 400 clamp(1.6rem, 3.4vw, 2.2rem)/1.15 var(--display); margin: 40px 0 14px; }
+    p.lede { color: var(--ink-soft); max-width: 60ch; margin: 0 0 8px; }
+    button, input, select { font: inherit; color: inherit; }
+    .btn { border: 1px solid var(--rule-strong); background: var(--surface); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+    .btn-primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .btn:disabled { opacity: .5; cursor: default; }
+    /* lock screen */
+    #lock { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+    #lock form { width: min(380px, 100%); }
+    #lock h1 { margin-top: 0; font-size: 2.4rem; }
+    #lock input[type=password] { width: 100%; padding: 12px 14px; border: 1px solid var(--rule-strong); border-radius: 10px; background: var(--surface); margin: 14px 0 10px; }
+    #lock label { display: flex; gap: 8px; align-items: center; color: var(--ink-soft); font-size: .9rem; margin-bottom: 16px; }
+    #lock .btn-primary { width: 100%; padding: 12px; }
+    #lock .err { color: var(--bad); font-size: .9rem; min-height: 1.4em; margin-top: 10px; }
+    /* stats */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); margin-top: 24px; }
+    .stat { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 14px 16px; }
+    .stat b { display: block; font: 400 2rem/1 var(--display); }
+    .tabs { display: flex; gap: 6px; margin: 28px 0 0; border-bottom: 1px solid var(--rule); }
+    .tab { border: 0; background: none; padding: 10px 14px; cursor: pointer; color: var(--ink-faint); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    .tab[aria-selected=true] { color: var(--ink); border-color: var(--accent); }
+    .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 16px 18px; }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card h3 { margin: 4px 0 6px; font-size: 1.02rem; font-weight: 600; }
+    .card p { margin: 6px 0; color: var(--ink-soft); font-size: .93rem; }
+    .card dt { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); margin-top: 10px; }
+    .card dd { margin: 2px 0 0; font-size: .93rem; color: var(--ink-soft); }
+    .when { font-family: var(--mono); font-size: .8rem; color: var(--accent); }
+    .callout { border-left: 3px solid var(--warn); background: var(--warn-wash); padding: 10px 14px; border-radius: 0 8px 8px 0; margin-top: 12px; font-size: .93rem; }
+    .pill { display: inline-block; font-family: var(--mono); font-size: .7rem; padding: 2px 8px; border-radius: 999px; background: var(--bg-tint); color: var(--ink-soft); white-space: nowrap; }
+    .t-interview, .t-hired { background: var(--good-wash); color: var(--good); }
+    .t-assessment, .t-hold { background: var(--warn-wash); color: var(--warn); }
+    .t-rejected { background: var(--bad-wash); color: var(--bad); }
+    .t-unsubmitted { background: transparent; border: 1px dashed var(--rule-strong); }
+    .t-applied { background: var(--accent-wash); color: var(--accent); }
+    .rows { border-top: 1px solid var(--rule); }
+    .row { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+    .row .co { font-weight: 600; }
+    .row .sub { color: var(--ink-soft); font-size: .9rem; grid-column: 1; }
+    .row .st { grid-column: 2; grid-row: 1 / span 2; text-align: right; align-self: center; }
+    .row .st .mono { display: block; margin-top: 4px; }
+    .group-h { display: flex; justify-content: space-between; align-items: baseline; margin: 30px 0 6px; }
+    .group-h h3 { font: 400 1.5rem/1.2 var(--display); margin: 0; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 8px; align-items: center; }
+    .filters input { flex: 1 1 220px; padding: 9px 12px; border: 1px solid var(--rule-strong); border-radius: 10px; background: var(--surface); }
+    .chip { border: 1px solid var(--rule-strong); background: var(--surface); border-radius: 999px; padding: 6px 12px; cursor: pointer; font-size: .85rem; }
+    .chip[aria-pressed=true] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .empty { color: var(--ink-faint); padding: 24px 0; }
+    footer { margin: 48px 0 40px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 560px) { .row { grid-template-columns: 1fr; } .row .st { grid-column: 1; grid-row: auto; text-align: left; } }
+  </style>
+</head>
+<body>
+  <section id="lock">
+    <form id="unlock" autocomplete="off">
+      <div class="mono">carterlavigne.dev</div>
+      <h1>Private page</h1>
+      <p class="lede">Enter the passphrase to open it.</p>
+      <input type="password" id="pass" aria-label="Passphrase" autocomplete="current-password" required />
+      <label><input type="checkbox" id="remember" checked /> Keep me unlocked on this device</label>
+      <button class="btn btn-primary" id="go" type="submit">Unlock</button>
+      <div class="err" id="err" role="alert"></div>
+    </form>
+  </section>
+
+  <div id="app" hidden>
+    <header><div class="wrap">
+      <a class="brand" href="../">Carter LaVigne<span>.</span></a>
+      <button class="btn" id="lockBtn" type="button">Lock</button>
+    </div></header>
+    <main class="wrap">
+      <h1 id="title"></h1>
+      <p class="lede" id="blurb"></p>
+      <div class="mono" id="updated"></div>
+      <div class="stats" id="stats"></div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" data-tab="overview" aria-selected="true">Overview</button>
+        <button class="tab" role="tab" data-tab="record" aria-selected="false">Full record</button>
+      </div>
+      <section id="overview"></section>
+      <section id="record" hidden>
+        <div class="filters">
+          <input type="search" id="q" placeholder="Search company, role, source…" aria-label="Search" />
+        </div>
+        <div class="filters" id="chips"></div>
+        <div id="list"></div>
+      </section>
+      <footer class="mono" id="foot"></footer>
+    </main>
+  </div>
+
+<script>
+(() => {
+  "use strict";
+  const s = crypto.subtle;
+  const $ = (id) => document.getElementById(id);
+  const ub64 = (t) => Uint8Array.from(atob(t), (ch) => ch.charCodeAt(0));
+  const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+  const getJSON = (f) => fetch(f + "?t=" + Date.now(), { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
+
+  // Remembered key: a non-extractable CryptoKey in IndexedDB (the raw key can't be read back out).
+  const DB = "clv-tracker";
+  const idb = (mode, fn) => new Promise((res, rej) => {
+    const open = indexedDB.open(DB, 1);
+    open.onupgradeneeded = () => open.result.createObjectStore("k");
+    open.onerror = () => rej(open.error);
+    open.onsuccess = () => {
+      const tx = open.result.transaction("k", mode); const req = fn(tx.objectStore("k"));
+      tx.oncomplete = () => res(req && req.result); tx.onerror = () => rej(tx.error);
+    };
+  });
+  const saveKey = (k) => idb("readwrite", (st) => st.put(k, "priv")).catch(() => {});
+  const loadKey = () => idb("readonly", (st) => st.get("priv")).catch(() => null);
+  const forgetKey = () => idb("readwrite", (st) => st.delete("priv")).catch(() => {});
+
+  async function unwrapPrivate(pass, extractable) {
+    const k = await getJSON("key.json");
+    const base = await s.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+    const kek = await s.deriveKey({ name: "PBKDF2", salt: ub64(k.salt), iterations: k.iterations, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    const pkcs8 = await s.decrypt({ name: "AES-GCM", iv: ub64(k.iv) }, kek, ub64(k.ct));
+    return s.importKey("pkcs8", pkcs8, { name: "RSA-OAEP", hash: "SHA-256" }, extractable, ["decrypt"]);
+  }
+
+  async function decryptData(priv) {
+    const e = await getJSON("data.enc.json");
+    const dek = await s.decrypt({ name: "RSA-OAEP" }, priv, ub64(e.key));
+    const aes = await s.importKey("raw", dek, "AES-GCM", false, ["decrypt"]);
+    const plain = await s.decrypt({ name: "AES-GCM", iv: ub64(e.iv) }, aes, ub64(e.ct));
+    return JSON.parse(new TextDecoder().decode(plain));
+  }
+
+  $("unlock").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    $("err").textContent = ""; $("go").disabled = true; $("go").textContent = "Unlocking…";
+    try {
+      const priv = await unwrapPrivate($("pass").value, false);
+      const data = await decryptData(priv);
+      if ($("remember").checked) await saveKey(priv);
+      $("pass").value = "";
+      show(data);
+    } catch (e) {
+      $("err").textContent = "That passphrase didn't work.";
+    } finally { $("go").disabled = false; $("go").textContent = "Unlock"; }
+  });
+
+  $("lockBtn").addEventListener("click", async () => { await forgetKey(); location.reload(); });
+
+  (async () => {
+    const k = await loadKey();
+    if (k) { try { show(await decryptData(k)); } catch { await forgetKey(); } }
+  })();
+
+  // ---------- rendering ----------
+  const LABEL = { applied: "Applied", interview: "Interviewing", assessment: "Assessment", hold: "On hold", rejected: "Closed", hired: "Hired", unsubmitted: "Not submitted" };
+  const fmt = (iso) => iso ? new Date(iso + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: iso.startsWith("2025") ? "numeric" : undefined }) : "";
+  const pill = (a) => `<span class="pill t-${a.type}">${esc(LABEL[a.type])}</span>`;
+  const row = (a) => `<div class="row"><div class="co">${esc(a.company)}</div><div class="st">${pill(a)}<span class="mono">${esc(fmt(a.applied))}</span></div><div class="sub">${esc(a.role)}${a.details ? " · " + esc(a.details) : ""} — ${esc(a.status)}</div></div>`;
+
+  function show(d) {
+    $("lock").hidden = true; $("app").hidden = false;
+    document.title = "Job search tracker";
+    const apps = d.applications;
+    const sub = apps.filter((a) => a.type !== "unsubmitted");
+    const n = (t) => sub.filter((a) => a.type === t).length;
+    $("title").textContent = d.title;
+    $("blurb").textContent = d.blurb;
+    $("updated").textContent = "Updated " + new Date(d.updated).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" });
+    $("stats").innerHTML = [["Submitted", sub.length], ["Waiting", n("applied")], ["Interviewing", n("interview")], ["Assessments", n("assessment") + n("hold")], ["Closed", n("rejected")]]
+      .map(([l, v]) => `<div class="stat"><b>${v}</b><span class="mono">${l}</span></div>`).join("");
+    $("foot").textContent = d.checkedNote || "";
+
+    const live = sub.filter((a) => ["interview", "assessment", "hold"].includes(a.type));
+    const recent = sub.filter((a) => a.applied && (Date.now() - new Date(a.applied)) / 864e5 <= 14 && a.type === "applied");
+    $("overview").innerHTML = `
+      <h2>Coming up</h2>
+      <div class="grid">${(d.upcoming || []).map((u) => `<div class="card"><div class="when">${esc(u.when)}</div><h3>${esc(u.title)}</h3><p>${esc(u.detail)}</p></div>`).join("") || '<p class="empty">Nothing scheduled.</p>'}</div>
+      ${d.watch ? `<div class="callout">${esc(d.watch)}</div>` : ""}
+      <h2>Moving</h2>
+      <div class="rows">${live.map(row).join("") || '<p class="empty">Nothing in progress.</p>'}</div>
+      <h2>Fresh openings</h2>
+      <div class="grid">${(d.openings || []).map((o) => `<div class="card"><div class="mono">${esc(o.meta)}</div><h3>${esc(o.role)} — ${esc(o.company)} ${o.tag ? `<span class="pill">${esc(o.tag)}</span>` : ""}</h3><dl>
+        <dt>Why it fits</dt><dd>${esc(o.fit)}</dd>${o.resume ? `<dt>Against your resume</dt><dd>${esc(o.resume)}</dd>` : ""}<dt>Watch for</dt><dd>${esc(o.watch)}</dd></dl><p>${esc(o.note)} <span class="mono">via ${esc(o.source)}</span></p></div>`).join("")}</div>
+      <h2>Sent in the last two weeks</h2>
+      <div class="rows">${recent.map(row).join("") || '<p class="empty">None.</p>'}</div>
+      <h2>Recruiters and referrals</h2>
+      <div class="rows">${(d.contacts || []).map((c) => `<div class="row"><div class="co">${esc(c.name)}${c.org ? ` <span class="mono">${esc(c.org)}</span>` : ""}</div><div class="sub">${esc(c.note)}</div></div>`).join("")}</div>
+      <h2>Your resume in short</h2>
+      <div class="card"><dl>${(d.profile || []).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>`;
+
+    // full record
+    const types = ["all", "applied", "interview", "assessment", "rejected", "unsubmitted"];
+    let filter = "all";
+    $("chips").innerHTML = types.map((t) => `<button class="chip" data-t="${t}" aria-pressed="${t === "all"}">${t === "all" ? "All" : LABEL[t]}</button>`).join("");
+    const draw = () => {
+      const q = $("q").value.trim().toLowerCase();
+      const hits = apps.filter((a) => (filter === "all" || a.type === filter || (filter === "assessment" && a.type === "hold") || (filter === "interview" && a.type === "hired"))
+        && (!q || `${a.company} ${a.role} ${a.details} ${a.status}`.toLowerCase().includes(q)));
+      const groups = [...new Set(hits.map((a) => a.group))];
+      $("list").innerHTML = groups.map((g) => { const gs = hits.filter((a) => a.group === g);
+        return `<div class="group-h"><h3>${esc(g)}</h3><span class="mono">${gs.length} ${gs.length === 1 ? "entry" : "entries"}</span></div><div class="rows">${gs.map(row).join("")}</div>`; }).join("") || '<p class="empty">No matches.</p>';
+    };
+    $("chips").onclick = (e) => { const b = e.target.closest(".chip"); if (!b) return; filter = b.dataset.t;
+      $("chips").querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c === b)); draw(); };
+    $("q").oninput = draw;
+    draw();
+
+    document.querySelectorAll(".tab").forEach((t) => t.onclick = () => {
+      document.querySelectorAll(".tab").forEach((x) => x.setAttribute("aria-selected", x === t));
+      $("overview").hidden = t.dataset.tab !== "overview"; $("record").hidden = t.dataset.tab !== "record";
+    });
+  }
+})();
+</script>
+</body>
+</html>
