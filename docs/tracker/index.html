@@ -255,8 +255,14 @@
     $("title").textContent = d.title;
     $("blurb").textContent = d.blurb;
     $("updated").textContent = "Updated " + new Date(d.updated).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" });
-    $("stats").innerHTML = [["Submitted", sub.length], ["Waiting", n("applied")], ["Interviewing", n("interview")], ["Assessments", n("assessment") + n("hold")], ["Closed", n("rejected")]]
-      .map(([l, v]) => `<div class="stat"><b>${v}</b><span class="mono">${l}</span></div>`).join("");
+    // Heard back = any reply beyond the confirmation. Reached interview = interviewing, hired,
+    // or a closed row whose status shows an interview or call happened first.
+    const heard = sub.filter((a) => a.type !== "applied").length;
+    const interviewed = sub.filter((a) => a.type === "interview" || a.type === "hired" || /interview|after a call/i.test(a.status)).length;
+    const pct = (x) => sub.length ? Math.round((x / sub.length) * 1000) / 10 + "%" : "–";
+    $("stats").innerHTML = [["Heard back", pct(heard), `${heard} of ${sub.length}`], ["Got an interview", pct(interviewed), `${interviewed} of ${sub.length}`],
+      ["Submitted", sub.length], ["Waiting", n("applied")], ["Interviewing", n("interview")], ["Assessments", n("assessment") + n("hold")], ["Closed", n("rejected")]]
+      .map(([l, v, s]) => `<div class="stat"><b>${v}</b><span class="mono">${l}${s ? `<br>${s}` : ""}</span></div>`).join("");
     $("foot").textContent = d.checkedNote || "";
 
     const live = sub.filter((a) => ["interview", "assessment", "hold"].includes(a.type));
